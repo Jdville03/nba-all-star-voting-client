@@ -5,6 +5,7 @@
 .PlayerCard {
   float: left;
   margin: 1.5%;
+  padding-top: 6px;
   background: whitesmoke;
   width: 30%;
   height: 300px;
@@ -16,4 +17,9 @@
 .PlayerCard:hover {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
   0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.PlayerImage {
+  max-width: 100%;
+  height: auto;
 }
