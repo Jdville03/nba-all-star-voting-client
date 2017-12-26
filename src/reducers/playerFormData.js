@@ -1,7 +1,8 @@
 const initialState = {
   last_name: '',
   first_name: '',
-  jersey_number: '',
+  team_id: '',
+  // jersey_number: '',
   position: '',
   image_url: ''
 };
