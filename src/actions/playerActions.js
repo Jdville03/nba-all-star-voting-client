@@ -1,4 +1,4 @@
-import fetch from "isomorphic-fetch";
+import fetch from 'isomorphic-fetch';
 import { resetPlayerForm } from './playerForm';
 
 const API_URL = process.env.REACT_APP_API_URL;
