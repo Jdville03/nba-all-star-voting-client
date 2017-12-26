@@ -8,11 +8,14 @@ const PlayerCard = ({ player }) => (
       className="PlayerImage"
     />
     <h3>
-      {player.first_name} {player.last_name}
+      {player.last_name}, {player.first_name}
+      <br />
+      <small>
+        {player.team.conference} / {player.team.abbreviation} /{" "}
+        {player.position}
+      </small>
     </h3>
-    <p>
-      #{player.jersey_number} - {player.position}
-    </p>
+    {/* <p>#{player.jersey_number} - {player.position}</p> */}
   </div>
 );
 
