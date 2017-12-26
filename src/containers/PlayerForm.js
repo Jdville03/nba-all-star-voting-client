@@ -2,21 +2,26 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updatePlayerFormData } from '../actions/playerForm';
 import { addPlayer } from '../actions/playerActions';
+import { fetchTeams } from '../actions/teamActions';
 
 class PlayerForm extends Component {
   
+  componentDidMount() {
+    this.props.fetchTeams();
+  }
+
   handleOnChange = event => {
     const { name, value } = event.target;
     const currentPlayerFormData = Object.assign({}, this.props.playerFormData, {
       [name]: value
     });
     this.props.updatePlayerFormData(currentPlayerFormData);
-  }
+  };
 
   handleOnSubmit = event => {
     event.preventDefault();
     this.props.addPlayer(this.props.playerFormData);
-  }
+  };
 
   render() {
     const {
@@ -26,6 +31,10 @@ class PlayerForm extends Component {
       position,
       image_url
     } = this.props.playerFormData;
+
+    const renderTeamsOptions = this.props.teams.map(team =>
+      <option value={team.id}>{team.city} {team.name}</option>
+    );
 
     return (
       <div>
@@ -40,17 +49,12 @@ class PlayerForm extends Component {
             <input type="text" placeholder="First Name" name="first_name" value={first_name} onChange={this.handleOnChange} />
           </div>
           <div>
-            {/* <label htmlFor="jersey_number">Jersey Number: </label>
-            <input type="number" name="jersey_number" value={jersey_number} onChange={this.handleOnChange} /> */}
             {/* <label htmlFor="team_id">Team: </label> */}
             <select name="team_id" value={team_id} onChange={this.handleOnChange}>
-              <option value="" disabled>Select Team</option>
-              <option value="1">Atlanta Hawks</option>
-              <option value="2">Boston Celtics</option>
-              <option value="3">Brooklyn Nets</option>
-              <option value="10">Golden State Warriors</option>
-              <option value="11">Houston Rockets</option>
-              <option value="25">Portland Trail Blazers</option>
+              <option value="" disabled>
+                Select Team
+              </option>
+              {renderTeamsOptions}
             </select>
           </div>
           <div>
@@ -70,8 +74,9 @@ class PlayerForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    playerFormData: state.playerFormData
+    playerFormData: state.playerFormData,
+    teams: state.teams
   }
 }
 
-export default connect(mapStateToProps, { updatePlayerFormData, addPlayer })(PlayerForm);
+export default connect(mapStateToProps, { updatePlayerFormData, addPlayer, fetchTeams })(PlayerForm);
