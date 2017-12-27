@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch';
-import { resetPlayerForm } from './playerForm';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -22,12 +21,8 @@ export function addPlayer(player) {
       body: JSON.stringify({ player: player })
     })
       .then(response => response.json())
-      .then(player => {
-        dispatch({ type: "ADD_PLAYER", player })
-        dispatch(resetPlayerForm())
-      })
+      .then(player => dispatch({ type: "ADD_PLAYER", player }))
       .catch(error => console.log(error));
   };
 };
-
 
