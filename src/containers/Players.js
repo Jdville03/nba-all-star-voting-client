@@ -6,6 +6,8 @@ import PlayerCard from '../components/PlayerCard';
 import PlayerForm from './PlayerForm';
 import './Players.css';
 
+import { Item } from 'semantic-ui-react';
+
 class Players extends Component {
   
   componentDidMount() {
@@ -13,14 +15,29 @@ class Players extends Component {
   }
 
   render() {
+    const sortedPlayers = this.props.players.sort((a, b) => (
+      a.last_name.localeCompare(b.last_name) || a.first_name.localeCompare(b.first_name) || a.id - b.id
+    ));
+
     return (
-      <div className="PlayersContainer">
+      <div>
         <h1>Players Component</h1>
-        {this.props.players.map(player => (
-          <PlayerCard player={player} key={player.id} />
-        ))}
+        <Item.Group>  
+          {sortedPlayers.map(player =>
+            <PlayerCard player={player} key={player.id} />
+          )}
+        </Item.Group>
         <PlayerForm />
       </div>
+      // <div className="PlayersContainer">
+      //   <h1>Players Component</h1>
+      //   {this.props.players.map(player => (
+      //     <PlayerCard player={player} key={player.id} />
+      //   ))}
+      //   <div>
+      //     <PlayerForm />
+      //   </div>  
+      // </div>
     );
   }
 }
