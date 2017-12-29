@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addPlayer } from '../actions/playerActions';
 import { fetchTeams } from '../actions/teamActions';
-import { Form } from 'semantic-ui-react';
+
+import { Button, Card, Form, Header, Icon, Modal } from 'semantic-ui-react';
 
 class PlayerForm extends Component {
   constructor(props) {
@@ -28,8 +29,8 @@ class PlayerForm extends Component {
     });
   };
 
-  handleOnSelectChange = (e, { value }) => this.setState({
-    team_id: value
+  handleOnSelectChange = (event, { value, name }) => this.setState({
+    [name]: value
   });
 
   handleOnSubmit = event => {
@@ -51,54 +52,59 @@ class PlayerForm extends Component {
       return Object.assign({}, { key: team.id, text: `${team.city} ${team.name}`, value: team.id });
     });
 
+    const animatedButton = () =>
+      <Button fluid animated="fade">
+        <Button.Content hidden>Add Player</Button.Content>
+        <Button.Content visible>
+          <Icon name="plus" size="big" />  
+        </Button.Content>
+      </Button>;
+
     return (
-      <div>
-        <h3>Add a Player to the Ballot</h3>
-        <Form onSubmit={this.handleOnSubmit}>
-          <Form.Group widths="equal">
-            <Form.Input
-              label="Last name"
-              placeholder="Last name"
-              name="last_name"
-              value={last_name}
-              onChange={this.handleOnChange}
-            />
-            <Form.Input
-              label="First name"
-              placeholder="First name"
-              name="first_name"
-              value={first_name}
-              onChange={this.handleOnChange}
-            />
-          </Form.Group>
-          <Form.Group widths="equal">
-            <Form.Select
-              label="Team"
-              options={renderTeamsOptions}
-              placeholder="Select Team"
-              name="team_id"
-              selection
-              value={team_id}
-              onChange={this.handleOnSelectChange}
-            />
-            <Form.Input
-              label="Position"
-              placeholder="Position"
-              name="position"
-              value={position}
-              onChange={this.handleOnChange}
-            />
-            <Form.Input
-              label="Image URL"
-              placeholder="Image URL"
-              name="image_url"
-              value={image_url}
-              onChange={this.handleOnChange}
-            />
-          </Form.Group>
-          <Form.Button>Add Player</Form.Button>
-        </Form>
-      </div>
+      <Card>
+        <Card.Content>
+          <Modal size="tiny" trigger={animatedButton()} closeIcon>
+            <Header content="Add a Player to the Ballot" />
+            <Modal.Content>
+              <Form size="small" onSubmit={this.handleOnSubmit}>  
+                <Form.Input
+                  placeholder="Last name"
+                  name="last_name"
+                  value={last_name}
+                  onChange={this.handleOnChange}
+                />
+                <Form.Input
+                  placeholder="First name"
+                  name="first_name"
+                  value={first_name}
+                  onChange={this.handleOnChange}
+                />
+                <Form.Select
+                  options={renderTeamsOptions}
+                  placeholder="Select Team"
+                  name="team_id"
+                  selection
+                  value={team_id}
+                  onChange={this.handleOnSelectChange}
+                />
+                <Form.Input
+                  placeholder="Position"
+                  name="position"
+                  value={position}
+                  onChange={this.handleOnChange}
+                />
+                <Form.Input
+                  placeholder="Image URL"
+                  name="image_url"
+                  value={image_url}
+                  onChange={this.handleOnChange}
+                />
+                <Form.Button>Add Player</Form.Button>
+              </Form>
+            </Modal.Content>
+          </Modal>
+        </Card.Content>
+      </Card>
     );
   }
 }
