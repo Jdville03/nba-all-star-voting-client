@@ -26,3 +26,18 @@ export function addPlayer(player) {
   };
 };
 
+export function upVotePlayer(playerId, playerVotes) {
+  return dispatch => {
+    return fetch(`${API_URL}/players/${playerId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ player: { votes: playerVotes } })
+    })
+      .then(response => response.json())
+      .then(player => dispatch({ type: "UP_VOTE_PLAYER", player }))
+      .catch(error => console.log(error));
+  };
+};
+
