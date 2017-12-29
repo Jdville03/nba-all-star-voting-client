@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
-import { fetchPlayers } from '../actions/playerActions';
+import { fetchPlayers, upVotePlayer } from '../actions/playerActions';
 import PlayerCard from '../components/PlayerCard';
 import PlayerForm from './PlayerForm';
 import './Players.css';
@@ -14,6 +14,10 @@ class Players extends Component {
     this.props.fetchPlayers();
   }
 
+  handleUpVotePlayer = (playerId, playerVotes) => {
+    this.props.upVotePlayer(playerId, playerVotes);
+  }
+
   render() {
     const sortedPlayers = this.props.players.sort((a, b) => (
       a.last_name.localeCompare(b.last_name) || a.first_name.localeCompare(b.first_name) || a.id - b.id
@@ -24,7 +28,7 @@ class Players extends Component {
         {/* <h1>Players Component</h1> */}
         <Card.Group itemsPerRow={5} doubling>  
           {sortedPlayers.map(player =>
-            <PlayerCard player={player} key={player.id} />
+            <PlayerCard player={player} key={player.id} upVotePlayer={this.handleUpVotePlayer} />
           )}
           <PlayerForm />
         </Card.Group>
@@ -50,4 +54,4 @@ const mapStateToProps = state => {
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Players);
 
-export default connect(mapStateToProps, { fetchPlayers })(Players);
+export default connect(mapStateToProps, { fetchPlayers, upVotePlayer })(Players);
