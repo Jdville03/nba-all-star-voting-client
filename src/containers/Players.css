@@ -21,6 +21,11 @@
 }
 
 .PlayerImage {
-  max-width: 50%;
+  max-width: 100%;
   height: auto;
+}
+
+.ui.card>.image,
+.ui.cards>.card>.image {
+  background: none;
 }
