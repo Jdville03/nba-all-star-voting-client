@@ -3,7 +3,7 @@ import VotingButton from './VotingButton';
 
 import { Card, Image } from 'semantic-ui-react';
 
-const PlayerCard = ({ player }) => {
+const PlayerCard = ({ player, upVotePlayer }) => {
   const cardColor = player.team.conference === "Western" ? "red" : "blue";
 
   return (
@@ -21,7 +21,7 @@ const PlayerCard = ({ player }) => {
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <VotingButton player={player} />
+        <VotingButton player={player} upVotePlayer={upVotePlayer} />
       </Card.Content>
     </Card>
   );
