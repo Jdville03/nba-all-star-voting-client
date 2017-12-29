@@ -6,7 +6,7 @@ import PlayerCard from '../components/PlayerCard';
 import PlayerForm from './PlayerForm';
 import './Players.css';
 
-import { Item } from 'semantic-ui-react';
+import { Card, Container } from 'semantic-ui-react';
 
 class Players extends Component {
   
@@ -20,24 +20,15 @@ class Players extends Component {
     ));
 
     return (
-      <div>
-        <h1>Players Component</h1>
-        <Item.Group>  
+      <Container>
+        {/* <h1>Players Component</h1> */}
+        <Card.Group itemsPerRow={5} doubling>  
           {sortedPlayers.map(player =>
             <PlayerCard player={player} key={player.id} />
           )}
-        </Item.Group>
-        <PlayerForm />
-      </div>
-      // <div className="PlayersContainer">
-      //   <h1>Players Component</h1>
-      //   {this.props.players.map(player => (
-      //     <PlayerCard player={player} key={player.id} />
-      //   ))}
-      //   <div>
-      //     <PlayerForm />
-      //   </div>  
-      // </div>
+          <PlayerForm />
+        </Card.Group>
+      </Container>
     );
   }
 }
