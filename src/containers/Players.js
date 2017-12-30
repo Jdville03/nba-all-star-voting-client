@@ -24,7 +24,6 @@ class Players extends Component {
 
     return (
       <Container>
-        {/* <h1>Players Component</h1> */}
         <Card.Group itemsPerRow={5} doubling>  
           {sortedPlayers.map(player =>
             <PlayerCard player={player} key={player.id} upVotePlayer={this.handleUpVotePlayer} />
