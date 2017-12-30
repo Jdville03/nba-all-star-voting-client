@@ -43,50 +43,6 @@ class PlayerForm extends Component {
       position: "",
       image_url: ""
     });
-    
-    // this.setState(prevState => {
-    //   return prevState.image_url.trim() ? { image_url: "https://vote.nba.com/static/media/Logo_NBA_grey.36d9a907.svg" } : { image_url: prevState.image_url };
-    // }, () => {
-    //   this.props.addPlayer(this.state);
-    //   this.setState({
-    //     last_name: "",
-    //     first_name: "",
-    //     team_id: "",
-    //     position: "",
-    //     image_url: ""
-    //   });
-    // });
-
-    // this.setState((prevState) => {
-    //   if (prevState.image_url.trim()) {
-    //     return { image_url: prevState.image_url };
-    //   } else {
-    //     return { image_url: "https://vote.nba.com/static/media/Logo_NBA_grey.36d9a907.svg" };
-    //   }  
-    // }, () => {
-    //   this.props.addPlayer(this.state);
-    //   this.setState({
-    //     last_name: "",
-    //     first_name: "",
-    //     team_id: "",
-    //     position: "",
-    //     image_url: ""
-    //   });
-    // });
-
-
-    // this.setState({
-    //   image_url: "https://vote.nba.com/static/media/Logo_NBA_grey.36d9a907.svg"
-    // }, () => {
-    //   this.props.addPlayer(this.state);
-    //   this.setState({
-    //     last_name: "",
-    //     first_name: "",
-    //     team_id: "",
-    //     position: "",
-    //     image_url: ""
-    //   });
-    // }); 
   };
 
   render() {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Icon, Label } from 'semantic-ui-react';
 
+import { Button, Icon, Label } from 'semantic-ui-react';
 
 const VotingButton = ({ player, upVotePlayer }) => {
   const ButtonColor = player.team.conference === "Western" ? "red" : "blue";

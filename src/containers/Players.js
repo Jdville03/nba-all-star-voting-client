@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import { fetchPlayers, upVotePlayer } from '../actions/playerActions';
 import PlayerCard from '../components/PlayerCard';
 import PlayerForm from './PlayerForm';
@@ -42,16 +41,5 @@ const mapStateToProps = state => {
     players: state.players
   };
 };
-
-// const mapDispatchToProps = dispatch => {
-//   return bindActionCreators(
-//     {
-//       fetchPlayers: fetchPlayers
-//     },
-//     dispatch
-//   );
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Players);
 
 export default connect(mapStateToProps, { fetchPlayers, upVotePlayer })(Players);
