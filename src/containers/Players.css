@@ -2,3 +2,7 @@
 .ui.cards>.card>.image {
   background: none;
 }
+
+#addPlayerButton .ui.button {
+  min-height: 8em;
+}
