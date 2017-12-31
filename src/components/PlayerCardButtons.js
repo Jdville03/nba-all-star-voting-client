@@ -7,9 +7,8 @@ const PlayerCardButtons = ({ player, upVotePlayer }) => {
 
   return (
     <Card.Content extra>
-      <Button as="div" labelPosition="right" floated="left" onClick={() => upVotePlayer(player.id, player.votes + 1)}>
-        <Button basic color={ButtonColor} size="tiny">
-          <Icon name="check" />
+      <Button as="div" labelPosition="right" floated="left" size="tiny" onClick={() => upVotePlayer(player.id, player.votes + 1)}>
+        <Button basic color={ButtonColor} size="tiny" compact>
           Vote
         </Button>
         <Label as="a" color={ButtonColor} pointing="left">
@@ -17,7 +16,7 @@ const PlayerCardButtons = ({ player, upVotePlayer }) => {
         </Label>
       </Button>
 
-      <Button.Group icon basic compact floated="right" size="tiny">
+      <Button.Group icon basic compact floated="right" size="mini">
         <Button icon>
           <Icon name="edit" />
         </Button>
