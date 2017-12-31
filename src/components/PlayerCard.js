@@ -21,7 +21,7 @@ const PlayerCard = ({ player, upVotePlayer }) => {
           {player.position}
         </Card.Meta>
         <Card.Description>
-          {player.team.conference} / {player.team.abbreviation}
+          {player.team.conference.substring(0, 4)} / {player.team.abbreviation}
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
