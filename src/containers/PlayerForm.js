@@ -52,11 +52,16 @@ class PlayerForm extends Component {
       return Object.assign({}, { key: team.id, text: `${team.city} ${team.name}`, value: team.id });
     });
 
+    const renderPositionsOptions = [
+      { key: 1, text: "Guard", value: "Guard" },
+      { key: 2, text: "Frontcourt", value: "Frontcourt" }
+    ]
+
     const animatedButton = () =>
       <Button fluid animated="fade">
         <Button.Content hidden>Add Player</Button.Content>
         <Button.Content visible>
-          <Icon name="plus" size="big" />  
+          <Icon name="add user" size="big" />
         </Button.Content>
       </Button>;
 
@@ -87,11 +92,19 @@ class PlayerForm extends Component {
                   value={team_id}
                   onChange={this.handleOnSelectChange}
                 />
-                <Form.Input
+                {/* <Form.Input
                   placeholder="Position"
                   name="position"
                   value={position}
                   onChange={this.handleOnChange}
+                /> */}
+                <Form.Select
+                  options={renderPositionsOptions}
+                  placeholder="Select Position"
+                  name="position"
+                  selection
+                  value={position}
+                  onChange={this.handleOnSelectChange}
                 />
                 <Form.Input
                   placeholder="Image URL"
