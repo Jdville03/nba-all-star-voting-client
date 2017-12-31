@@ -1,5 +1,5 @@
 import React from 'react';
-import VotingButton from './VotingButton';
+import PlayerCardButtons from './PlayerCardButtons';
 
 import { Card, Image } from 'semantic-ui-react';
 
@@ -25,7 +25,7 @@ const PlayerCard = ({ player, upVotePlayer }) => {
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <VotingButton player={player} upVotePlayer={upVotePlayer} />
+        <PlayerCardButtons player={player} upVotePlayer={upVotePlayer} />
       </Card.Content>
     </Card>
   );
