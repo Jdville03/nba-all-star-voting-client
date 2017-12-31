@@ -53,8 +53,8 @@ class PlayerForm extends Component {
     });
 
     const renderPositionsOptions = [
-      { key: 1, text: "Guard", value: "Guard" },
-      { key: 2, text: "Frontcourt", value: "Frontcourt" }
+      { key: 1, text: "Frontcourt", value: "Frontcourt" },
+      { key: 2, text: "Guard", value: "Guard" }
     ]
 
     const animatedButton = () =>
