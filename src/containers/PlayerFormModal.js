@@ -105,7 +105,7 @@ class PlayerFormModal extends Component {
     const modalTriggerButton = () => {
       if (this.props.player) {
         return (
-          <Button icon onClick={this.handleOpen}>
+          <Button icon basic compact floated="right" size="mini" onClick={this.handleOpen}>
             <Icon name="edit" />
           </Button>
         );
@@ -123,7 +123,7 @@ class PlayerFormModal extends Component {
       }
     };
 
-    const headerText = this.props.player ? "Edit Player" : "Add a Player to the Ballot";
+    const headerText = this.props.player ? "Edit Player" : "Add New Player";
 
     const submitText = this.props.player ? "Update Player" : "Add Player";
 
