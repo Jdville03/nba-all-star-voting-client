@@ -1,23 +1,30 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addPlayer } from '../actions/playerActions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addPlayer, updatePlayer } from "../actions/playerActions";
 
-import { Button, Form, Header, Icon, Modal } from 'semantic-ui-react';
+import { Button, Form, Header, Icon, Modal } from "semantic-ui-react";
 
-class NewPlayerForm extends Component {
+class PlayerForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      player: {
-        last_name: "",
-        first_name: "",
-        team_id: "",
-        position: "",
-        image_url: ""
-      },
-      modalOpen: false
-    };
+    if (props.player) {
+      this.state = {
+        player: props.player,
+        modalOpen: false
+      };
+    } else {
+      this.state = {
+        player: {
+          last_name: "",
+          first_name: "",
+          team_id: "",
+          position: "",
+          image_url: ""
+        },
+        modalOpen: false
+      };
+    }
   }
 
   handleOnChange = event => {
@@ -36,8 +43,15 @@ class NewPlayerForm extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    this.props.addPlayer(this.state.player);
-    this.handleClose();
+    if (this.props.player) {
+      this.props.updatePlayer(this.state.player);
+      this.setState({
+        modalOpen: false
+      });
+    } else {
+      this.props.addPlayer(this.state.player);
+      this.handleClose();
+    }
   };
 
   handleOpen = () => {
@@ -48,16 +62,23 @@ class NewPlayerForm extends Component {
   };
 
   handleClose = () => {
-    this.setState({
-      modalOpen: false,
-      player: {
-        last_name: "",
-        first_name: "",
-        team_id: "",
-        position: "",
-        image_url: ""
-      }
-    });
+    if (this.props.player) {
+      this.setState({
+        modalOpen: false,
+        player: this.props.player
+      });
+    } else {
+      this.setState({
+        modalOpen: false,
+        player: {
+          last_name: "",
+          first_name: "",
+          team_id: "",
+          position: "",
+          image_url: ""
+        }
+      });
+    }
   };
 
   render() {
@@ -81,26 +102,40 @@ class NewPlayerForm extends Component {
       { key: 2, text: "Guard", value: "Guard" }
     ];
 
-    const animatedButton = () => (
-      <div id="addPlayerButton">
-        <Button fluid animated="fade" onClick={this.handleOpen}>
-          <Button.Content hidden>Add Player</Button.Content>
-          <Button.Content visible>
-            <Icon name="add user" size="big" />
-          </Button.Content>
-        </Button>
-      </div>
-    );
+    const modalTriggerButton = () => {
+      if (this.props.player) {
+        return (
+          <Button icon onClick={this.handleOpen}>
+            <Icon name="edit" />
+          </Button>
+        );
+      } else {
+        return (
+          <div id="addPlayerButton">
+            <Button fluid animated="fade" onClick={this.handleOpen}>
+              <Button.Content hidden>Add Player</Button.Content>
+              <Button.Content visible>
+                <Icon name="add user" size="big" />
+              </Button.Content>
+            </Button>
+          </div>
+        );
+      }
+    };
+
+    const headerText = this.props.player ? "Edit Player" : "Add a Player to the Ballot";
+
+    const submitText = this.props.player ? "Update Player" : "Add Player";
 
     return (
       <Modal
         size="tiny"
-        trigger={animatedButton()}
+        trigger={modalTriggerButton()}
         closeIcon
         open={this.state.modalOpen}
         onClose={this.handleClose}
       >
-        <Header content="Add a Player to the Ballot" />
+        <Header content={headerText} />
         <Modal.Content>
           <Form size="small" onSubmit={this.handleOnSubmit}>
             <Form.Input
@@ -132,12 +167,12 @@ class NewPlayerForm extends Component {
               onChange={this.handleOnSelectChange}
             />
             <Form.Input
-              placeholder="Image URL"
+              placeholder="Image URL (NBA logo default)"
               name="image_url"
               value={image_url}
               onChange={this.handleOnChange}
             />
-            <Form.Button>Add Player</Form.Button>
+            <Form.Button>{submitText}</Form.Button>
           </Form>
         </Modal.Content>
       </Modal>
@@ -145,4 +180,4 @@ class NewPlayerForm extends Component {
   }
 }
 
-export default connect(null, { addPlayer })(NewPlayerForm);
+export default connect(null, { addPlayer, updatePlayer })(PlayerForm);
