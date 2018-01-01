@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addPlayer } from '../actions/playerActions';
-import { fetchTeams } from '../actions/teamActions';
 
-import { Button, Card, Form, Header, Icon, Modal } from 'semantic-ui-react';
+import { Button, Form, Header, Icon, Modal } from 'semantic-ui-react';
 
-class PlayerForm extends Component {
+class NewPlayerForm extends Component {
   constructor(props) {
     super(props);
 
@@ -19,10 +18,6 @@ class PlayerForm extends Component {
       },
       modalOpen: false
     };
-  }
-
-  componentDidMount() {
-    this.props.fetchTeams();
   }
 
   handleOnChange = event => {
@@ -98,64 +93,56 @@ class PlayerForm extends Component {
     );
 
     return (
-      <Card>
-        <Modal
-          size="tiny"
-          trigger={animatedButton()}
-          closeIcon
-          open={this.state.modalOpen}
-          onClose={this.handleClose}
-        >
-          <Header content="Add a Player to the Ballot" />
-          <Modal.Content>
-            <Form size="small" onSubmit={this.handleOnSubmit}>
-              <Form.Input
-                placeholder="Last name"
-                name="last_name"
-                value={last_name}
-                onChange={this.handleOnChange}
-              />
-              <Form.Input
-                placeholder="First name"
-                name="first_name"
-                value={first_name}
-                onChange={this.handleOnChange}
-              />
-              <Form.Select
-                options={renderTeamsOptions}
-                placeholder="Select Team"
-                name="team_id"
-                selection
-                value={team_id}
-                onChange={this.handleOnSelectChange}
-              />
-              <Form.Select
-                options={renderPositionsOptions}
-                placeholder="Select Position"
-                name="position"
-                selection
-                value={position}
-                onChange={this.handleOnSelectChange}
-              />
-              <Form.Input
-                placeholder="Image URL"
-                name="image_url"
-                value={image_url}
-                onChange={this.handleOnChange}
-              />
-              <Form.Button>Add Player</Form.Button>
-            </Form>
-          </Modal.Content>
-        </Modal>
-      </Card>
+      <Modal
+        size="tiny"
+        trigger={animatedButton()}
+        closeIcon
+        open={this.state.modalOpen}
+        onClose={this.handleClose}
+      >
+        <Header content="Add a Player to the Ballot" />
+        <Modal.Content>
+          <Form size="small" onSubmit={this.handleOnSubmit}>
+            <Form.Input
+              placeholder="Last name"
+              name="last_name"
+              value={last_name}
+              onChange={this.handleOnChange}
+            />
+            <Form.Input
+              placeholder="First name"
+              name="first_name"
+              value={first_name}
+              onChange={this.handleOnChange}
+            />
+            <Form.Select
+              options={renderTeamsOptions}
+              placeholder="Select Team"
+              name="team_id"
+              selection
+              value={team_id}
+              onChange={this.handleOnSelectChange}
+            />
+            <Form.Select
+              options={renderPositionsOptions}
+              placeholder="Select Position"
+              name="position"
+              selection
+              value={position}
+              onChange={this.handleOnSelectChange}
+            />
+            <Form.Input
+              placeholder="Image URL"
+              name="image_url"
+              value={image_url}
+              onChange={this.handleOnChange}
+            />
+            <Form.Button>Add Player</Form.Button>
+          </Form>
+        </Modal.Content>
+      </Modal>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    teams: state.teams
-  }
-}
-
-export default connect(mapStateToProps, { addPlayer, fetchTeams })(PlayerForm);
+export default connect(null, { addPlayer })(NewPlayerForm);
