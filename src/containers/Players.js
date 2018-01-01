@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPlayers, upVotePlayer } from '../actions/playerActions';
+import { fetchTeams } from '../actions/teamActions';
 import PlayerCard from '../components/PlayerCard';
-import PlayerForm from './PlayerForm';
+import NewPlayerForm from './NewPlayerForm';
 import './Players.css';
 
 import { Card, Container } from 'semantic-ui-react';
@@ -11,6 +12,7 @@ class Players extends Component {
   
   componentDidMount() {
     this.props.fetchPlayers();
+    this.props.fetchTeams();
   }
 
   handleUpVotePlayer = (playerId, playerVotes) => {
@@ -26,9 +28,11 @@ class Players extends Component {
       <Container>
         <Card.Group itemsPerRow={5} doubling>  
           {sortedPlayers.map(player =>
-            <PlayerCard player={player} key={player.id} upVotePlayer={this.handleUpVotePlayer} />
+            <PlayerCard player={player} teams={this.props.teams} key={player.id} upVotePlayer={this.handleUpVotePlayer} />
           )}
-          <PlayerForm />
+          <Card>
+            <NewPlayerForm teams={this.props.teams} />
+          </Card>
         </Card.Group>
       </Container>
     );
@@ -37,8 +41,9 @@ class Players extends Component {
 
 const mapStateToProps = state => {
   return {
-    players: state.players
+    players: state.players,
+    teams: state.teams
   };
 };
 
-export default connect(mapStateToProps, { fetchPlayers, upVotePlayer })(Players);
+export default connect(mapStateToProps, { fetchPlayers, fetchTeams, upVotePlayer })(Players);
