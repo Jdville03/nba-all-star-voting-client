@@ -41,3 +41,18 @@ export function upVotePlayer(playerId, playerVotes) {
   };
 };
 
+export function updatePlayer(player) {
+  return dispatch => {
+    return fetch(`${API_URL}/players/${player.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ player: player })
+    })
+      .then(response => response.json())
+      .then(player => dispatch({ type: "UPDATE_PLAYER", player }))
+      .catch(error => console.log(error));
+  };
+};
+
