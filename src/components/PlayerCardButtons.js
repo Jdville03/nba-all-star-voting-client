@@ -1,5 +1,5 @@
 import React from 'react';
-import PlayerForm from '../containers/PlayerForm';
+import PlayerFormModal from '../containers/PlayerFormModal';
 
 import { Button, Card, Icon, Label } from 'semantic-ui-react';
 
@@ -18,7 +18,7 @@ const PlayerCardButtons = ({ player, teams, upVotePlayer, removePlayer }) => {
       </Button>
 
       <Button.Group icon basic compact floated="right" size="mini">
-        <PlayerForm player={player} teams={teams} />
+        <PlayerFormModal player={player} teams={teams} />
         <Button icon onClick={() => removePlayer(player.id)}>
           <Icon name="delete" />
         </Button>  

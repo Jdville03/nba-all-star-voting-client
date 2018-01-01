@@ -4,7 +4,7 @@ import { addPlayer, updatePlayer } from "../actions/playerActions";
 
 import { Button, Form, Header, Icon, Modal } from "semantic-ui-react";
 
-class PlayerForm extends Component {
+class PlayerFormModal extends Component {
   constructor(props) {
     super(props);
 
@@ -185,4 +185,4 @@ class PlayerForm extends Component {
   }
 }
 
-export default connect(null, { addPlayer, updatePlayer })(PlayerForm);
+export default connect(null, { addPlayer, updatePlayer })(PlayerFormModal);

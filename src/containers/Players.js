@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPlayers, upVotePlayer, removePlayer } from '../actions/playerActions';
 import { fetchTeams } from '../actions/teamActions';
 import PlayerCard from '../components/PlayerCard';
-import PlayerForm from './PlayerForm';
+import PlayerFormModal from './PlayerFormModal';
 import './Players.css';
 
 import { Card, Container } from 'semantic-ui-react';
@@ -35,7 +35,7 @@ class Players extends Component {
             <PlayerCard player={player} teams={this.props.teams} key={player.id} upVotePlayer={this.handleUpVotePlayer} removePlayer={this.handleRemovePlayer} />
           )}
           <Card>
-            <PlayerForm teams={this.props.teams} />
+            <PlayerFormModal teams={this.props.teams} />
           </Card>
         </Card.Group>
       </Container>
