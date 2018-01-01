@@ -3,7 +3,7 @@ import PlayerCardButtons from './PlayerCardButtons';
 
 import { Card, Image } from 'semantic-ui-react';
 
-const PlayerCard = ({ player, upVotePlayer }) => {
+const PlayerCard = ({ player, teams, upVotePlayer }) => {
   const cardColor = player.team.conference === "Western" ? "red" : "blue";
 
   const addDefaultSrc = (event) => {
@@ -25,7 +25,7 @@ const PlayerCard = ({ player, upVotePlayer }) => {
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <PlayerCardButtons player={player} upVotePlayer={upVotePlayer} />
+        <PlayerCardButtons player={player} teams={teams} upVotePlayer={upVotePlayer} />
       </Card.Content>
     </Card>
   );
