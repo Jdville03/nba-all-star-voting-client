@@ -3,7 +3,7 @@ import PlayerForm from '../containers/PlayerForm';
 
 import { Button, Card, Icon, Label } from 'semantic-ui-react';
 
-const PlayerCardButtons = ({ player, teams, upVotePlayer }) => {
+const PlayerCardButtons = ({ player, teams, upVotePlayer, removePlayer }) => {
   const ButtonColor = player.team.conference === "Western" ? "red" : "blue";
 
   return (
@@ -19,7 +19,7 @@ const PlayerCardButtons = ({ player, teams, upVotePlayer }) => {
 
       <Button.Group icon basic compact floated="right" size="mini">
         <PlayerForm player={player} teams={teams} />
-        <Button icon>
+        <Button icon onClick={() => removePlayer(player.id)}>
           <Icon name="delete" />
         </Button>  
       </Button.Group>
