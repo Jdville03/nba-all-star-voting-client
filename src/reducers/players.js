@@ -15,6 +15,8 @@ export default (state = [], action) => {
       idx = state.findIndex(player => player.id === action.player.id);
       updatedPlayer = Object.assign({}, state[idx], action.player);
       return [...state.slice(0, idx), updatedPlayer, ...state.slice(idx + 1)];
+    case "REMOVE_PLAYER":
+      return state.filter(player => player.id !== action.player.id);
     default:
       return state;
   }

@@ -56,3 +56,14 @@ export function updatePlayer(player) {
   };
 };
 
+export function removePlayer(playerId) {
+  return dispatch => {
+    return fetch(`${API_URL}/players/${playerId}`, {
+      method: "DELETE"
+    })
+      .then(response => response.json())
+      .then(player => dispatch({ type: "REMOVE_PLAYER", player }))
+      .catch(error => console.log(error));
+  };
+};
+
