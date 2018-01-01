@@ -1,7 +1,8 @@
 import React from 'react';
 import PlayerFormModal from '../containers/PlayerFormModal';
+import DeleteConfirmModal from './DeleteConfirmModal';
 
-import { Button, Card, Icon, Label } from 'semantic-ui-react';
+import { Button, Card, Label } from 'semantic-ui-react';
 
 const PlayerCardButtons = ({ player, teams, upVotePlayer, removePlayer }) => {
   const ButtonColor = player.team.conference === "Western" ? "red" : "blue";
@@ -16,13 +17,8 @@ const PlayerCardButtons = ({ player, teams, upVotePlayer, removePlayer }) => {
           {player.votes}
         </Label>
       </Button>
-
-      <Button.Group icon basic compact floated="right" size="mini">
-        <PlayerFormModal player={player} teams={teams} />
-        <Button icon onClick={() => removePlayer(player.id)}>
-          <Icon name="delete" />
-        </Button>  
-      </Button.Group>
+      <DeleteConfirmModal player={player} removePlayer={removePlayer} />
+      <PlayerFormModal player={player} teams={teams} />        
     </Card.Content>  
   );  
 };
