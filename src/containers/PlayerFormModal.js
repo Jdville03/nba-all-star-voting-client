@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addPlayer, updatePlayer } from "../actions/playerActions";
 
-import { Button, Form, Header, Icon, Modal } from "semantic-ui-react";
+import { Button, Form, Header, Icon, Message, Modal } from "semantic-ui-react";
 
 class PlayerFormModal extends Component {
   constructor(props) {
@@ -11,7 +11,8 @@ class PlayerFormModal extends Component {
     if (props.player) {
       this.state = {
         player: props.player,
-        modalOpen: false
+        modalOpen: false,
+        formError: false
       };
     } else {
       this.state = {
@@ -22,7 +23,8 @@ class PlayerFormModal extends Component {
           position: "",
           image_url: ""
         },
-        modalOpen: false
+        modalOpen: false,
+        formError: false
       };
     }
   }
@@ -43,15 +45,23 @@ class PlayerFormModal extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    if (this.props.player) {
-      this.props.updatePlayer(this.state.player);
+    if (!this.state.player.team_id || !this.state.player.position) {
       this.setState({
-        modalOpen: false
+        ...this.state,
+        formError: true
       });
     } else {
-      this.props.addPlayer(this.state.player);
-      this.handleClose();
-    }
+      if (this.props.player) {
+        this.props.updatePlayer(this.state.player);
+        this.setState({
+          ...this.state,
+          modalOpen: false
+        });
+      } else {
+        this.props.addPlayer(this.state.player);
+        this.handleClose();
+      }
+    }  
   };
 
   handleOpen = () => {
@@ -65,11 +75,13 @@ class PlayerFormModal extends Component {
     if (this.props.player) {
       this.setState({
         modalOpen: false,
+        formError: false,
         player: this.props.player
       });
     } else {
       this.setState({
         modalOpen: false,
+        formError: false,
         player: {
           last_name: "",
           first_name: "",
@@ -137,13 +149,14 @@ class PlayerFormModal extends Component {
       >
         <Header content={headerText} />
         <Modal.Content>
-          <Form size="small" onSubmit={this.handleOnSubmit}>
+          <Form error={this.state.formError} size="small" onSubmit={this.handleOnSubmit}>
             <Form.Input
               label="Last name"  
               placeholder="Last name"
               name="last_name"
               value={last_name}
               onChange={this.handleOnChange}
+              required
             />
             <Form.Input
               label="First name"
@@ -151,17 +164,20 @@ class PlayerFormModal extends Component {
               name="first_name"
               value={first_name}
               onChange={this.handleOnChange}
+              required
             />
-            <Form.Select
+            <Form.Dropdown
               options={renderTeamsOptions}
               label="Team"
               placeholder="Select Team"
               name="team_id"
+              search
               selection
               value={team_id}
               onChange={this.handleOnSelectChange}
+              required
             />
-            <Form.Select
+            <Form.Dropdown
               options={renderPositionsOptions}
               label="Position"
               placeholder="Select Position"
@@ -169,6 +185,7 @@ class PlayerFormModal extends Component {
               selection
               value={position}
               onChange={this.handleOnSelectChange}
+              required
             />
             <Form.Input
               label="Image URL"
@@ -176,6 +193,11 @@ class PlayerFormModal extends Component {
               name="image_url"
               value={image_url}
               onChange={this.handleOnChange}
+            />
+            <Message
+              error
+              header="Submission Error"
+              content="You are missing a required field."
             />
             <Form.Button>{submitText}</Form.Button>
           </Form>
