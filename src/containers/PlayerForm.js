@@ -139,12 +139,14 @@ class PlayerForm extends Component {
         <Modal.Content>
           <Form size="small" onSubmit={this.handleOnSubmit}>
             <Form.Input
+              label="Last name"  
               placeholder="Last name"
               name="last_name"
               value={last_name}
               onChange={this.handleOnChange}
             />
             <Form.Input
+              label="First name"
               placeholder="First name"
               name="first_name"
               value={first_name}
@@ -152,6 +154,7 @@ class PlayerForm extends Component {
             />
             <Form.Select
               options={renderTeamsOptions}
+              label="Team"
               placeholder="Select Team"
               name="team_id"
               selection
@@ -160,6 +163,7 @@ class PlayerForm extends Component {
             />
             <Form.Select
               options={renderPositionsOptions}
+              label="Position"
               placeholder="Select Position"
               name="position"
               selection
@@ -167,7 +171,8 @@ class PlayerForm extends Component {
               onChange={this.handleOnSelectChange}
             />
             <Form.Input
-              placeholder="Image URL (NBA logo default)"
+              label="Image URL"
+              placeholder="NBA Logo Default"
               name="image_url"
               value={image_url}
               onChange={this.handleOnChange}
