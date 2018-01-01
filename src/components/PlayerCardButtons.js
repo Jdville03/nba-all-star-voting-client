@@ -1,8 +1,9 @@
 import React from 'react';
+import EditPlayerForm from '../containers/EditPlayerForm';
 
 import { Button, Card, Icon, Label } from 'semantic-ui-react';
 
-const PlayerCardButtons = ({ player, upVotePlayer }) => {
+const PlayerCardButtons = ({ player, teams, upVotePlayer }) => {
   const ButtonColor = player.team.conference === "Western" ? "red" : "blue";
 
   return (
@@ -17,9 +18,7 @@ const PlayerCardButtons = ({ player, upVotePlayer }) => {
       </Button>
 
       <Button.Group icon basic compact floated="right" size="mini">
-        <Button icon>
-          <Icon name="edit" />
-        </Button>
+        <EditPlayerForm player={player} teams={teams} />
         <Button icon>
           <Icon name="delete" />
         </Button>  
