@@ -32,14 +32,12 @@ class PlayerFormModal extends Component {
   handleOnChange = event => {
     const { name, value } = event.target;
     this.setState({
-      ...this.state,
       player: { ...this.state.player, [name]: value }
     });
   };
 
   handleOnSelectChange = (event, { value, name }) =>
     this.setState({
-      ...this.state,
       player: { ...this.state.player, [name]: value }
     });
 
@@ -47,14 +45,12 @@ class PlayerFormModal extends Component {
     event.preventDefault();
     if (!this.state.player.team_id || !this.state.player.position) {
       this.setState({
-        ...this.state,
         formError: true
       });
     } else {
       if (this.props.player) {
         this.props.updatePlayer(this.state.player);
         this.setState({
-          ...this.state,
           modalOpen: false
         });
       } else {
@@ -65,10 +61,16 @@ class PlayerFormModal extends Component {
   };
 
   handleOpen = () => {
-    this.setState({
-      ...this.state,
-      modalOpen: true
-    });
+    if (this.props.player) {
+      this.setState({
+        modalOpen: true,
+        player: this.props.player
+      });
+    } else {
+      this.setState({
+        modalOpen: true
+      });
+    }
   };
 
   handleClose = () => {
@@ -123,14 +125,12 @@ class PlayerFormModal extends Component {
         );
       } else {
         return (
-          <div id="addPlayerButton">
-            <Button fluid animated="fade" onClick={this.handleOpen}>
-              <Button.Content hidden>Add Player</Button.Content>
-              <Button.Content visible>
-                <Icon name="add user" size="big" />
-              </Button.Content>
-            </Button>
-          </div>
+          <Button fluid animated="fade" onClick={this.handleOpen} size="big">
+            <Button.Content hidden>Add Player</Button.Content>
+            <Button.Content visible>
+              <Icon name="add user" size="big" />
+            </Button.Content>
+          </Button>
         );
       }
     };
