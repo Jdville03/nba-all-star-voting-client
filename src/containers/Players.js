@@ -30,7 +30,7 @@ class Players extends Component {
 
     return (
       <Container>
-        <Card.Group itemsPerRow={5} doubling>  
+        <Card.Group itemsPerRow={4} doubling stackable>  
           {sortedPlayers.map(player =>
             <PlayerCard player={player} teams={this.props.teams} key={player.id} upVotePlayer={this.handleUpVotePlayer} removePlayer={this.handleRemovePlayer} />
           )}

@@ -12,17 +12,15 @@ const PlayerCard = ({ player, teams, upVotePlayer, removePlayer }) => {
 
   return (
     <Card color={cardColor}>
-      <Image size="small" centered src={player.image_url} onError={addDefaultSrc} />
       <Card.Content>
+        <Image size="tiny" floated="left" src={player.image_url} onError={addDefaultSrc} />
         <Card.Header>
           {player.last_name}, {player.first_name}
         </Card.Header>
         <Card.Meta>
-          {player.position}
-        </Card.Meta>
-        <Card.Description>
+          {player.position}<br />
           {player.team.conference.substring(0, 4)} / {player.team.abbreviation}
-        </Card.Description>
+        </Card.Meta>
       </Card.Content>
       <Card.Content extra>
         <PlayerCardButtons player={player} teams={teams} upVotePlayer={upVotePlayer} removePlayer={removePlayer} />
