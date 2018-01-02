@@ -100,7 +100,7 @@ const SelectedPlayersList = ({ players }) => {
               <Image src="https://upload.wikimedia.org/wikipedia/en/e/ed/Eastern_Conference_%28NBA%29_logo.gif" />
               Eastern Conference
             </Header>  
-            <List>
+            <List divided>
               {topEastPlayers().map((player, index) =>
                 <PlayerListItem
                   player={player}
@@ -116,7 +116,7 @@ const SelectedPlayersList = ({ players }) => {
               <Image src="https://upload.wikimedia.org/wikipedia/en/0/02/Western_Conference_%28NBA%29_logo.gif" />
               Western Conference
             </Header>  
-            <List>
+            <List divided>
               {topWestPlayers().map((player, index) =>
                 <PlayerListItem
                   player={player}
