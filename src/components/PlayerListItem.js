@@ -9,6 +9,10 @@ const PlayerListItem = ({ player }) => {
     event.target.src = "https://vote.nba.com/static/media/Logo_NBA_grey.36d9a907.svg"
   }
 
+  const nameText = player.id ? `${player.last_name}, ${player.first_name}` : "TBD";
+  
+  const teamText = player.id ? player.team.abbreviation : "Team";
+
   return (
     <List.Item>
       <Image
@@ -18,15 +22,13 @@ const PlayerListItem = ({ player }) => {
       />
       <List.Content>
         <List.Header>
-          {player.last_name}, {player.first_name}
+          {nameText}
         </List.Header>
         <List.Description>
-          {player.team.conference.substring(0, 4)} / <a>{player.team.abbreviation}</a> / {player.position}
-          <p>
-            <Label basic color={labelColor} size="small">
-              <Icon name="check" />{player.votes}
-            </Label>
-          </p>  
+          {player.team.conference.substring(0, 4)} / <a>{teamText}</a> / {player.position}<br />
+          <Label basic color={labelColor} size="small">
+            <Icon name="check" />{player.votes}
+          </Label>
         </List.Description>
       </List.Content>
     </List.Item>    
