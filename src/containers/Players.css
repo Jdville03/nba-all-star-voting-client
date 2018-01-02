@@ -4,7 +4,7 @@
 }
 
 #addPlayerButton .ui.button {
-  min-height: 8em;
+  min-height: 130px;
 }
 
 .ui.card>.content>.header:not(.ui),
