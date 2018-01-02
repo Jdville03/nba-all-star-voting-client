@@ -189,7 +189,7 @@ class PlayerFormModal extends Component {
             />
             <Form.Input
               label="Image URL"
-              placeholder="NBA Logo Default"
+              placeholder="Team Logo Default"
               name="image_url"
               value={image_url}
               onChange={this.handleOnChange}
