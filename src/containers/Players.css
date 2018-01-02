@@ -3,10 +3,6 @@
   background: none;
 }
 
-#addPlayerButton .ui.button {
-  min-height: 130px;
-}
-
 .ui.card>.content>.header:not(.ui),
 .ui.cards>.card>.content>.header:not(.ui) {
   font-size: 1.2em;
@@ -20,10 +16,6 @@
 .ui.card>.content,
 .ui.cards>.card>.content {
   padding: .5em .5em;
-}
-
-.ui.tiny.image {
-  width: 100px;
 }
 
 .ui.floated.image {
