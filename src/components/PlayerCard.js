@@ -7,7 +7,7 @@ const PlayerCard = ({ player, teams, upVotePlayer, removePlayer }) => {
   const cardColor = player.team.conference === "Western" ? "red" : "blue";
 
   const addDefaultSrc = (event) => {
-    event.target.src = "https://vote.nba.com/static/media/Logo_NBA_grey.36d9a907.svg"
+    event.target.src = player.team.image_url;
   }
 
   return (

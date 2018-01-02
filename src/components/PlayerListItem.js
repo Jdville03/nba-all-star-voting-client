@@ -6,7 +6,7 @@ const PlayerListItem = ({ player }) => {
   const labelColor = player.team.conference === "Western" ? "red" : "blue";
 
   const addDefaultSrc = (event) => {
-    event.target.src = "https://vote.nba.com/static/media/Logo_NBA_grey.36d9a907.svg"
+    event.target.src = player.team.image_url;
   }
 
   const nameText = player.id ? `${player.last_name}, ${player.first_name}` : "TBD";
