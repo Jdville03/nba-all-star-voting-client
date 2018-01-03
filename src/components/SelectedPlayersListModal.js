@@ -15,7 +15,7 @@ const SelectedPlayersListModal = ({ players }) => {
     player => player.team.conference === "Eastern"
   );
 
-  const topEastFrontcourtPlayers = () => {
+  const eastFrontcourtPlayers = () => {
     let frontcourtPlayers = eastPlayers
       .filter(player => player.position === "Frontcourt" && player.votes > 0)
       .sort((a, b) => b.votes - a.votes)
@@ -26,7 +26,7 @@ const SelectedPlayersListModal = ({ players }) => {
     return frontcourtPlayers;
   };
 
-  const topEastGuards = () => {
+  const eastGuards = () => {
     let guards = eastPlayers
       .filter(player => player.position === "Guard" && player.votes > 0)
       .sort((a, b) => b.votes - a.votes)
@@ -45,7 +45,7 @@ const SelectedPlayersListModal = ({ players }) => {
     player => player.team.conference === "Western"
   );
 
-  const topWestFrontcourtPlayers = () => {
+  const westFrontcourtPlayers = () => {
     let frontcourtPlayers = westPlayers
       .filter(player => player.position === "Frontcourt" && player.votes > 0)
       .sort((a, b) => b.votes - a.votes)
@@ -60,7 +60,7 @@ const SelectedPlayersListModal = ({ players }) => {
     return frontcourtPlayers;
   };
 
-  const topWestGuards = () => {
+  const westGuards = () => {
     let guards = westPlayers
       .filter(player => player.position === "Guard" && player.votes > 0)
       .sort((a, b) => b.votes - a.votes)
@@ -93,7 +93,7 @@ const SelectedPlayersListModal = ({ players }) => {
               <Grid columns={2}>
                 <Grid.Column>  
                   <List divided size="small">
-                    {topEastFrontcourtPlayers().map((player, index) =>
+                    {eastFrontcourtPlayers().map((player, index) =>
                       <SelectedPlayerListItem
                         player={player}
                         key={index}
@@ -103,7 +103,7 @@ const SelectedPlayersListModal = ({ players }) => {
                 </Grid.Column>
                 <Grid.Column>
                   <List divided size="small">
-                    {topEastGuards().map((player, index) =>
+                    {eastGuards().map((player, index) =>
                       <SelectedPlayerListItem
                         player={player}
                         key={index}
@@ -123,7 +123,7 @@ const SelectedPlayersListModal = ({ players }) => {
               <Grid columns={2}>
                 <Grid.Column>  
                   <List divided size="small">
-                    {topWestFrontcourtPlayers().map((player, index) =>
+                    {westFrontcourtPlayers().map((player, index) =>
                       <SelectedPlayerListItem
                         player={player}
                         key={index}
@@ -133,7 +133,7 @@ const SelectedPlayersListModal = ({ players }) => {
                 </Grid.Column>
                 <Grid.Column>
                   <List divided size="small">
-                    {topWestGuards().map((player, index) =>
+                    {westGuards().map((player, index) =>
                       <SelectedPlayerListItem
                         player={player}
                         key={index}
