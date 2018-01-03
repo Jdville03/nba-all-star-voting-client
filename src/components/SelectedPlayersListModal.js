@@ -1,5 +1,5 @@
 import React from "react";
-import PlayerListItem from "./PlayerListItem";
+import SelectedPlayerListItem from "./SelectedPlayerListItem";
 
 import { Button, Grid, Header, Image, List, Modal, Segment } from "semantic-ui-react";
 
@@ -77,7 +77,11 @@ const SelectedPlayersListModal = ({ players }) => {
   };
 
   return (
-    <Modal size="large" closeIcon trigger={<Button fluid color="black">View Current Selected Starters<br />(most voted 3 frontcourt players and 2 guards from each conference)</Button>}>
+    <Modal
+      size="fullscreen"
+      closeIcon
+      trigger={<Button fluid color="black">View Current Selected Starters<br />(most voted 3 frontcourt players and 2 guards from each conference)</Button>}
+    >
       <Modal.Content>
         <Grid columns={2} stackable>
           <Grid.Column>
@@ -90,7 +94,7 @@ const SelectedPlayersListModal = ({ players }) => {
                 <Grid.Column>  
                   <List divided size="small">
                     {topEastFrontcourtPlayers().map((player, index) =>
-                      <PlayerListItem
+                      <SelectedPlayerListItem
                         player={player}
                         key={index}
                       />  
@@ -100,7 +104,7 @@ const SelectedPlayersListModal = ({ players }) => {
                 <Grid.Column>
                   <List divided size="small">
                     {topEastGuards().map((player, index) =>
-                      <PlayerListItem
+                      <SelectedPlayerListItem
                         player={player}
                         key={index}
                       />  
@@ -120,7 +124,7 @@ const SelectedPlayersListModal = ({ players }) => {
                 <Grid.Column>  
                   <List divided size="small">
                     {topWestFrontcourtPlayers().map((player, index) =>
-                      <PlayerListItem
+                      <SelectedPlayerListItem
                         player={player}
                         key={index}
                       />  
@@ -130,7 +134,7 @@ const SelectedPlayersListModal = ({ players }) => {
                 <Grid.Column>
                   <List divided size="small">
                     {topWestGuards().map((player, index) =>
-                      <PlayerListItem
+                      <SelectedPlayerListItem
                         player={player}
                         key={index}
                       />  

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Icon, Image, Label, List } from 'semantic-ui-react';
 
-const PlayerListItem = ({ player }) => {
+const SelectedPlayerListItem = ({ player }) => {
   const labelColor = player.team.conference === "Western" ? "red" : "blue";
 
   const addDefaultSrc = (event) => {
@@ -35,4 +35,4 @@ const PlayerListItem = ({ player }) => {
   );
 };
 
-export default PlayerListItem;
+export default SelectedPlayerListItem;
