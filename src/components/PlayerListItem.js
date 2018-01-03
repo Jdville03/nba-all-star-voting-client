@@ -25,9 +25,9 @@ const PlayerListItem = ({ player }) => {
           {nameText}
         </List.Header>
         <List.Description>
-          {player.team.conference.substring(0, 4)} / {teamText} / {player.position}<br />
-          <Label basic color={labelColor} size="small">
-            <Icon name="check" />{player.votes}
+          {teamText} / {player.position}<br />
+          <Label basic color={labelColor} size="tiny">
+            <Icon name="check" fitted />{player.votes}
           </Label>
         </List.Description>
       </List.Content>
