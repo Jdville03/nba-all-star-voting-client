@@ -1,7 +1,7 @@
 import React from 'react';
 import PlayerCardButtons from './PlayerCardButtons';
 
-import { Card, Image } from 'semantic-ui-react';
+import { Card, Image, Label } from 'semantic-ui-react';
 
 const PlayerCard = ({ player, teams, upVotePlayer, removePlayer }) => {
   const cardColor = player.team.conference === "Western" ? "red" : "blue";
@@ -13,6 +13,7 @@ const PlayerCard = ({ player, teams, upVotePlayer, removePlayer }) => {
   return (
     <Card color={cardColor}>
       <Card.Content>
+        {/* <Label color={cardColor} corner='right' icon='star' size="mini" /> */}
         <Image size="tiny"
           floated="left"
           src={player.image_url}
