@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPlayers, upVotePlayer, removePlayer } from '../actions/playerActions';
 import { fetchTeams } from '../actions/teamActions';
 import Players from '../components/Players';
-import SelectedPlayersList from '../components/SelectedPlayersList'
+import SelectedPlayersListModal from '../components/SelectedPlayersListModal';
 import './Players.css';
 
 import { Container, Divider } from 'semantic-ui-react';
@@ -26,7 +26,7 @@ class PlayersDashboard extends Component {
   render() {
     return (
       <Container>
-        <SelectedPlayersList players={this.props.players} />
+        <SelectedPlayersListModal players={this.props.players} />
         <Divider />
         <Players
           players={this.props.players}
