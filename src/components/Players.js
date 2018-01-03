@@ -11,7 +11,7 @@ const Players = ({ players, teams, upVotePlayer, removePlayer }) => {
   ));
 
   return (
-    <Card.Group itemsPerRow={4} doubling stackable>
+    <Card.Group itemsPerRow={3} doubling stackable>
       {sortedPlayers.map(player =>
         <PlayerCard
           player={player}
