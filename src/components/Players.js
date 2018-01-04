@@ -4,11 +4,20 @@ import PlayerFormModal from '../containers/PlayerFormModal';
 
 import { Card } from 'semantic-ui-react';
 
-const Players = ({ players, teams, upVotePlayer, removePlayer }) => {
+const Players = ({ players, teams, upVotePlayer, removePlayer, selectedPlayers }) => {
 
   const sortedPlayers = players.sort((a, b) => (
     a.last_name.localeCompare(b.last_name) || a.first_name.localeCompare(b.first_name) || a.id - b.id
   ));
+
+  const selectedPlayersIds = () => {
+    let selectedPlayersIds = [];
+    return selectedPlayersIds
+      .concat(selectedPlayers.eastFrontcourtPlayers.map(player => player.id))
+      .concat(selectedPlayers.eastGuards.map(player => player.id))
+      .concat(selectedPlayers.westFrontcourtPlayers.map(player => player.id))
+      .concat(selectedPlayers.westGuards.map(player => player.id));
+  }
 
   return (
     <Card.Group itemsPerRow={3} doubling stackable>
@@ -22,6 +31,7 @@ const Players = ({ players, teams, upVotePlayer, removePlayer }) => {
           key={player.id}
           upVotePlayer={upVotePlayer}
           removePlayer={removePlayer}
+          selectedPlayersIds={selectedPlayersIds()}
         />
       )}
     </Card.Group>
