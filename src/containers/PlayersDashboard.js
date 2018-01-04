@@ -56,7 +56,7 @@ class PlayersDashboard extends Component {
   render() {
     return (
       <Container>
-        <SelectedPlayersListModal players={this.props.players} selectedPlayers={this.selectedPlayers()} />
+        <SelectedPlayersListModal selectedPlayers={this.selectedPlayers()} />
         <Divider />
         <Players
           players={this.props.players}
