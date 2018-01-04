@@ -3,7 +3,8 @@ import SelectedPlayerListItem from "./SelectedPlayerListItem";
 
 import { Button, Grid, Header, Image, List, Modal, Segment } from "semantic-ui-react";
 
-const SelectedPlayersListModal = ({ players, selectedPlayers }) => {
+const SelectedPlayersListModal = ({ selectedPlayers }) => {
+  
   const placeholderPlayer = {
     team: { conference: "Eastern" },
     position: "Frontcourt",
@@ -11,70 +12,44 @@ const SelectedPlayersListModal = ({ players, selectedPlayers }) => {
     votes: 0
   };
 
-  // const eastPlayers = players.filter(
-  //   player => player.team.conference === "Eastern"
-  // );
+  const renderEastFrontcourtPlayers = () => {
+    let eastFrontcourtPlayers = selectedPlayers.eastFrontcourtPlayers;
+    while (eastFrontcourtPlayers.length < 3) {
+      eastFrontcourtPlayers = eastFrontcourtPlayers.concat(placeholderPlayer);
+    }
+    return eastFrontcourtPlayers;
+  };
 
-  // const eastFrontcourtPlayers = () => {
-  //   let frontcourtPlayers = eastPlayers
-  //     .filter(player => player.position === "Frontcourt" && player.votes > 0)
-  //     .sort((a, b) => b.votes - a.votes)
-  //     .slice(0, 3);
-  //   while (frontcourtPlayers.length < 3) {
-  //     frontcourtPlayers.push(placeholderPlayer);
-  //   }
-  //   return frontcourtPlayers;
-  // };
+  const renderEastGuards = () => {
+    let eastGuards = selectedPlayers.eastGuards;
+    while (eastGuards.length < 2) {
+      eastGuards = eastGuards.concat(Object.assign({}, placeholderPlayer, {
+          position: "Guard"
+        }));
+    }
+    return eastGuards;
+  };
 
-  // const eastGuards = () => {
-  //   let guards = eastPlayers
-  //     .filter(player => player.position === "Guard" && player.votes > 0)
-  //     .sort((a, b) => b.votes - a.votes)
-  //     .slice(0, 2);
-  //   while (guards.length < 2) {
-  //     guards.push(
-  //       Object.assign({}, placeholderPlayer, {
-  //         position: "Guard"
-  //       })
-  //     );
-  //   }
-  //   return guards;
-  // };
+  const renderWestFrontcourtPlayers = () => {
+    let westFrontcourtPlayers = selectedPlayers.westFrontcourtPlayers;
+    while (westFrontcourtPlayers.length < 3) {
+      westFrontcourtPlayers = westFrontcourtPlayers.concat(Object.assign({}, placeholderPlayer, {
+          team: { conference: "Western" }
+        }));
+    }
+    return westFrontcourtPlayers;
+  };
 
-  // const westPlayers = players.filter(
-  //   player => player.team.conference === "Western"
-  // );
-
-  // const westFrontcourtPlayers = () => {
-  //   let frontcourtPlayers = westPlayers
-  //     .filter(player => player.position === "Frontcourt" && player.votes > 0)
-  //     .sort((a, b) => b.votes - a.votes)
-  //     .slice(0, 3);
-  //   while (frontcourtPlayers.length < 3) {
-  //     frontcourtPlayers.push(
-  //       Object.assign({}, placeholderPlayer, {
-  //         team: { conference: "Western" }
-  //       })
-  //     );
-  //   }
-  //   return frontcourtPlayers;
-  // };
-
-  // const westGuards = () => {
-  //   let guards = westPlayers
-  //     .filter(player => player.position === "Guard" && player.votes > 0)
-  //     .sort((a, b) => b.votes - a.votes)
-  //     .slice(0, 2);
-  //   while (guards.length < 2) {
-  //     guards.push(
-  //       Object.assign({}, placeholderPlayer, {
-  //         team: { conference: "Western" },
-  //         position: "Guard"
-  //       })
-  //     );
-  //   }
-  //   return guards;
-  // };
+  const renderWestGuards = () => {
+    let westGuards = selectedPlayers.westGuards;
+    while (westGuards.length < 2) {
+      westGuards = westGuards.concat(Object.assign({}, placeholderPlayer, {
+          team: { conference: "Western" },
+          position: "Guard"
+        }));
+    }
+    return westGuards;
+  };
 
   return (
     <Modal
@@ -93,7 +68,7 @@ const SelectedPlayersListModal = ({ players, selectedPlayers }) => {
               <Grid columns={2}>
                 <Grid.Column>  
                   <List divided size="small">
-                    {selectedPlayers.eastFrontcourtPlayers.map((player, index) =>
+                    {renderEastFrontcourtPlayers().map((player, index) =>
                       <SelectedPlayerListItem
                         player={player}
                         key={index}
@@ -103,7 +78,7 @@ const SelectedPlayersListModal = ({ players, selectedPlayers }) => {
                 </Grid.Column>
                 <Grid.Column>
                   <List divided size="small">
-                    {selectedPlayers.eastGuards.map((player, index) =>
+                    {renderEastGuards().map((player, index) =>
                       <SelectedPlayerListItem
                         player={player}
                         key={index}
@@ -123,7 +98,7 @@ const SelectedPlayersListModal = ({ players, selectedPlayers }) => {
               <Grid columns={2}>
                 <Grid.Column>  
                   <List divided size="small">
-                    {selectedPlayers.westFrontcourtPlayers.map((player, index) =>
+                    {renderWestFrontcourtPlayers().map((player, index) =>
                       <SelectedPlayerListItem
                         player={player}
                         key={index}
@@ -133,7 +108,7 @@ const SelectedPlayersListModal = ({ players, selectedPlayers }) => {
                 </Grid.Column>
                 <Grid.Column>
                   <List divided size="small">
-                    {selectedPlayers.westGuards.map((player, index) =>
+                    {renderWestGuards().map((player, index) =>
                       <SelectedPlayerListItem
                         player={player}
                         key={index}
