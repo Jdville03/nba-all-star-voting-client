@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPlayers, upVotePlayer, removePlayer } from '../actions/playerActions';
 import { fetchTeams } from '../actions/teamActions';
+import { updateSelectedPlayers } from '../actions/selectedPlayerActions';
 import Players from '../components/Players';
 import SelectedPlayersListModal from '../components/SelectedPlayersListModal';
 import './Players.css';
@@ -15,8 +16,13 @@ class PlayersDashboard extends Component {
     this.props.fetchTeams();
   }
 
+  // componentDidUpdate() {
+  //   this.props.updateSelectedPlayers(this.props.players);
+  // }
+
   handleUpVotePlayer = (playerId, playerVotes) => {
     this.props.upVotePlayer(playerId, playerVotes);
+    this.props.updateSelectedPlayers(this.props.players);
   }
 
   handleRemovePlayer = (playerId) => {
@@ -42,8 +48,9 @@ class PlayersDashboard extends Component {
 const mapStateToProps = state => {
   return {
     players: state.players,
-    teams: state.teams
+    teams: state.teams,
+    selectedPlayers: state.selectedPlayers
   };
 };
 
-export default connect(mapStateToProps, { fetchPlayers, fetchTeams, upVotePlayer, removePlayer })(PlayersDashboard);
+export default connect(mapStateToProps, { fetchPlayers, fetchTeams, upVotePlayer, removePlayer, updateSelectedPlayers })(PlayersDashboard);
