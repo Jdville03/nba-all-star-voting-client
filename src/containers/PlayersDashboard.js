@@ -63,6 +63,7 @@ class PlayersDashboard extends Component {
           teams={this.props.teams}
           upVotePlayer={this.handleUpVotePlayer}
           removePlayer={this.handleRemovePlayer}
+          selectedPlayers={this.selectedPlayers()}
         />
       </Container>
     );
