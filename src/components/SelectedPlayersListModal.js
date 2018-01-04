@@ -51,23 +51,34 @@ const SelectedPlayersListModal = ({ selectedPlayers }) => {
     return westGuards;
   };
 
+  const modalTriggerButtonIcons = () => {
+    let icons = [];
+    for (var i = 0; i < 5; i++) {
+      icons.push(<Icon name="star" color="blue" size="small" key={i} />);
+    }
+    icons.push(<Icon name="star" inverted size="small" key={5} />);
+    for (var j = 6; j < 11; j++) {
+      icons.push(<Icon name="star" color="red" size="small" key={j} />);
+    }
+    return icons;
+  };
+
   const modalTriggerButton = () => (
     <Button fluid color="black">
-      View Current Selected Starters
-      <br />
-      (most voted 3 frontcourt players and 2 guards from each conference)
-      <p>
-        <Icon name="star" color="blue" circular inverted size="small" />
-        <Icon name="star" color="red" circular inverted size="small" />
-      </p>  
+      <h3>  
+        View Current Selected Starters
+        <br />
+        <small>(most voted 3 frontcourt players and 2 guards from each conference)</small>
+      </h3>
+      {modalTriggerButtonIcons()}
     </Button>
   );
 
   return (
     <Modal
       size="fullscreen"
-      closeIcon
       trigger={modalTriggerButton()}
+      basic
     >
       <Modal.Content>
         <Grid columns={2} stackable>
