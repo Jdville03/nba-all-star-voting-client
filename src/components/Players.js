@@ -12,6 +12,9 @@ const Players = ({ players, teams, upVotePlayer, removePlayer }) => {
 
   return (
     <Card.Group itemsPerRow={3} doubling stackable>
+      <Card>
+        <PlayerFormModal teams={teams} />
+      </Card>  
       {sortedPlayers.map(player =>
         <PlayerCard
           player={player}
@@ -21,9 +24,6 @@ const Players = ({ players, teams, upVotePlayer, removePlayer }) => {
           removePlayer={removePlayer}
         />
       )}
-      <Card>
-        <PlayerFormModal teams={teams} />
-      </Card>
     </Card.Group>
   );
 };
