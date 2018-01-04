@@ -3,17 +3,26 @@ import PlayerCardButtons from './PlayerCardButtons';
 
 import { Card, Image, Label } from 'semantic-ui-react';
 
-const PlayerCard = ({ player, teams, upVotePlayer, removePlayer }) => {
+const PlayerCard = ({ player, teams, upVotePlayer, removePlayer, selectedPlayersIds }) => {
+  
   const cardColor = player.team.conference === "Western" ? "red" : "blue";
 
   const addDefaultSrc = (event) => {
     event.target.src = player.team.image_url;
   }
 
+  const selectedPlayerLabel = () => {
+    if (selectedPlayersIds.includes(player.id)) {
+      return (
+        <Label color={cardColor} corner="right" icon="star" size="mini" />
+      );
+    }
+  }
+
   return (
     <Card color={cardColor}>
       <Card.Content>
-        {/* <Label color={cardColor} corner='right' icon='star' size="mini" /> */}
+        {selectedPlayerLabel()}
         <Image size="tiny"
           floated="left"
           src={player.image_url}
