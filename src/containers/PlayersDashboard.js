@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPlayers, upVotePlayer, removePlayer } from '../actions/playerActions';
 import { fetchTeams } from '../actions/teamActions';
-import { updateSelectedPlayers } from '../actions/selectedPlayerActions';
 import Players from '../components/Players';
 import SelectedPlayersListModal from '../components/SelectedPlayersListModal';
 import './Players.css';
@@ -16,13 +15,38 @@ class PlayersDashboard extends Component {
     this.props.fetchTeams();
   }
 
-  // componentDidUpdate() {
-  //   this.props.updateSelectedPlayers(this.props.players);
-  // }
+  selectedPlayers = () => {
+    const selectedPlayers = {
+      eastFrontcourtPlayers: [],
+      eastGuards: [],
+      westFrontcourtPlayers: [],
+      westGuards: []
+    }
+    const eastPlayers = this.props.players.filter(player => player.team.conference === "Eastern");
+    selectedPlayers.eastFrontcourtPlayers = eastPlayers
+      .filter(player => player.position === "Frontcourt" && player.votes > 0)
+      .sort((a, b) => b.votes - a.votes)
+      .slice(0, 3);
+    selectedPlayers.eastGuards = eastPlayers
+      .filter(player => player.position === "Guard" && player.votes > 0)
+      .sort((a, b) => b.votes - a.votes)
+      .slice(0, 2);
+    
+    const westPlayers = this.props.players.filter(player => player.team.conference === "Western");
+    selectedPlayers.westFrontcourtPlayers = westPlayers
+      .filter(player => player.position === "Frontcourt" && player.votes > 0)
+      .sort((a, b) => b.votes - a.votes)
+      .slice(0, 3);
+    selectedPlayers.westGuards = westPlayers
+      .filter(player => player.position === "Guard" && player.votes > 0)
+      .sort((a, b) => b.votes - a.votes)
+      .slice(0, 2);
+    
+    return selectedPlayers;
+  }
 
   handleUpVotePlayer = (playerId, playerVotes) => {
     this.props.upVotePlayer(playerId, playerVotes);
-    this.props.updateSelectedPlayers(this.props.players);
   }
 
   handleRemovePlayer = (playerId) => {
@@ -32,7 +56,7 @@ class PlayersDashboard extends Component {
   render() {
     return (
       <Container>
-        <SelectedPlayersListModal players={this.props.players} />
+        <SelectedPlayersListModal players={this.props.players} selectedPlayers={this.selectedPlayers()} />
         <Divider />
         <Players
           players={this.props.players}
@@ -49,8 +73,7 @@ const mapStateToProps = state => {
   return {
     players: state.players,
     teams: state.teams,
-    selectedPlayers: state.selectedPlayers
   };
 };
 
-export default connect(mapStateToProps, { fetchPlayers, fetchTeams, upVotePlayer, removePlayer, updateSelectedPlayers })(PlayersDashboard);
+export default connect(mapStateToProps, { fetchPlayers, fetchTeams, upVotePlayer, removePlayer })(PlayersDashboard);

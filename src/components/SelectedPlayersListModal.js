@@ -3,7 +3,7 @@ import SelectedPlayerListItem from "./SelectedPlayerListItem";
 
 import { Button, Grid, Header, Image, List, Modal, Segment } from "semantic-ui-react";
 
-const SelectedPlayersListModal = ({ players }) => {
+const SelectedPlayersListModal = ({ players, selectedPlayers }) => {
   const placeholderPlayer = {
     team: { conference: "Eastern" },
     position: "Frontcourt",
@@ -11,70 +11,70 @@ const SelectedPlayersListModal = ({ players }) => {
     votes: 0
   };
 
-  const eastPlayers = players.filter(
-    player => player.team.conference === "Eastern"
-  );
+  // const eastPlayers = players.filter(
+  //   player => player.team.conference === "Eastern"
+  // );
 
-  const eastFrontcourtPlayers = () => {
-    let frontcourtPlayers = eastPlayers
-      .filter(player => player.position === "Frontcourt" && player.votes > 0)
-      .sort((a, b) => b.votes - a.votes)
-      .slice(0, 3);
-    while (frontcourtPlayers.length < 3) {
-      frontcourtPlayers.push(placeholderPlayer);
-    }
-    return frontcourtPlayers;
-  };
+  // const eastFrontcourtPlayers = () => {
+  //   let frontcourtPlayers = eastPlayers
+  //     .filter(player => player.position === "Frontcourt" && player.votes > 0)
+  //     .sort((a, b) => b.votes - a.votes)
+  //     .slice(0, 3);
+  //   while (frontcourtPlayers.length < 3) {
+  //     frontcourtPlayers.push(placeholderPlayer);
+  //   }
+  //   return frontcourtPlayers;
+  // };
 
-  const eastGuards = () => {
-    let guards = eastPlayers
-      .filter(player => player.position === "Guard" && player.votes > 0)
-      .sort((a, b) => b.votes - a.votes)
-      .slice(0, 2);
-    while (guards.length < 2) {
-      guards.push(
-        Object.assign({}, placeholderPlayer, {
-          position: "Guard"
-        })
-      );
-    }
-    return guards;
-  };
+  // const eastGuards = () => {
+  //   let guards = eastPlayers
+  //     .filter(player => player.position === "Guard" && player.votes > 0)
+  //     .sort((a, b) => b.votes - a.votes)
+  //     .slice(0, 2);
+  //   while (guards.length < 2) {
+  //     guards.push(
+  //       Object.assign({}, placeholderPlayer, {
+  //         position: "Guard"
+  //       })
+  //     );
+  //   }
+  //   return guards;
+  // };
 
-  const westPlayers = players.filter(
-    player => player.team.conference === "Western"
-  );
+  // const westPlayers = players.filter(
+  //   player => player.team.conference === "Western"
+  // );
 
-  const westFrontcourtPlayers = () => {
-    let frontcourtPlayers = westPlayers
-      .filter(player => player.position === "Frontcourt" && player.votes > 0)
-      .sort((a, b) => b.votes - a.votes)
-      .slice(0, 3);
-    while (frontcourtPlayers.length < 3) {
-      frontcourtPlayers.push(
-        Object.assign({}, placeholderPlayer, {
-          team: { conference: "Western" }
-        })
-      );
-    }
-    return frontcourtPlayers;
-  };
+  // const westFrontcourtPlayers = () => {
+  //   let frontcourtPlayers = westPlayers
+  //     .filter(player => player.position === "Frontcourt" && player.votes > 0)
+  //     .sort((a, b) => b.votes - a.votes)
+  //     .slice(0, 3);
+  //   while (frontcourtPlayers.length < 3) {
+  //     frontcourtPlayers.push(
+  //       Object.assign({}, placeholderPlayer, {
+  //         team: { conference: "Western" }
+  //       })
+  //     );
+  //   }
+  //   return frontcourtPlayers;
+  // };
 
-  const westGuards = () => {
-    let guards = westPlayers
-      .filter(player => player.position === "Guard" && player.votes > 0)
-      .sort((a, b) => b.votes - a.votes)
-      .slice(0, 2);
-    while (guards.length < 2) {
-      guards.push(
-        Object.assign({}, placeholderPlayer, {
-          team: { conference: "Western" },
-          position: "Guard"
-        })
-      );
-    }
-    return guards;
-  };
+  // const westGuards = () => {
+  //   let guards = westPlayers
+  //     .filter(player => player.position === "Guard" && player.votes > 0)
+  //     .sort((a, b) => b.votes - a.votes)
+  //     .slice(0, 2);
+  //   while (guards.length < 2) {
+  //     guards.push(
+  //       Object.assign({}, placeholderPlayer, {
+  //         team: { conference: "Western" },
+  //         position: "Guard"
+  //       })
+  //     );
+  //   }
+  //   return guards;
+  // };
 
   return (
     <Modal
@@ -93,7 +93,7 @@ const SelectedPlayersListModal = ({ players }) => {
               <Grid columns={2}>
                 <Grid.Column>  
                   <List divided size="small">
-                    {eastFrontcourtPlayers().map((player, index) =>
+                    {selectedPlayers.eastFrontcourtPlayers.map((player, index) =>
                       <SelectedPlayerListItem
                         player={player}
                         key={index}
@@ -103,7 +103,7 @@ const SelectedPlayersListModal = ({ players }) => {
                 </Grid.Column>
                 <Grid.Column>
                   <List divided size="small">
-                    {eastGuards().map((player, index) =>
+                    {selectedPlayers.eastGuards.map((player, index) =>
                       <SelectedPlayerListItem
                         player={player}
                         key={index}
@@ -123,7 +123,7 @@ const SelectedPlayersListModal = ({ players }) => {
               <Grid columns={2}>
                 <Grid.Column>  
                   <List divided size="small">
-                    {westFrontcourtPlayers().map((player, index) =>
+                    {selectedPlayers.westFrontcourtPlayers.map((player, index) =>
                       <SelectedPlayerListItem
                         player={player}
                         key={index}
@@ -133,7 +133,7 @@ const SelectedPlayersListModal = ({ players }) => {
                 </Grid.Column>
                 <Grid.Column>
                   <List divided size="small">
-                    {westGuards().map((player, index) =>
+                    {selectedPlayers.westGuards.map((player, index) =>
                       <SelectedPlayerListItem
                         player={player}
                         key={index}
