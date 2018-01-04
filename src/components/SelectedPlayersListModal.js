@@ -1,7 +1,7 @@
 import React from "react";
 import SelectedPlayerListItem from "./SelectedPlayerListItem";
 
-import { Button, Grid, Header, Image, List, Modal, Segment } from "semantic-ui-react";
+import { Button, Grid, Header, Icon, Image, List, Modal, Segment } from "semantic-ui-react";
 
 const SelectedPlayersListModal = ({ selectedPlayers }) => {
   
@@ -51,11 +51,23 @@ const SelectedPlayersListModal = ({ selectedPlayers }) => {
     return westGuards;
   };
 
+  const modalTriggerButton = () => (
+    <Button fluid color="black">
+      View Current Selected Starters
+      <br />
+      (most voted 3 frontcourt players and 2 guards from each conference)
+      <p>
+        <Icon name="star" color="blue" circular inverted size="small" />
+        <Icon name="star" color="red" circular inverted size="small" />
+      </p>  
+    </Button>
+  );
+
   return (
     <Modal
       size="fullscreen"
       closeIcon
-      trigger={<Button fluid color="black">View Current Selected Starters<br />(most voted 3 frontcourt players and 2 guards from each conference)</Button>}
+      trigger={modalTriggerButton()}
     >
       <Modal.Content>
         <Grid columns={2} stackable>
