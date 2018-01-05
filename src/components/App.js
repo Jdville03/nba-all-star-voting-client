@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import './App.css';
+import { Route } from 'react-router-dom';
 import PlayersDashboard from '../containers/PlayersDashboard';
 
 import { Header, Image } from 'semantic-ui-react';
@@ -13,7 +13,7 @@ class App extends Component {
           <Image src="https://espntheundefeated.files.wordpress.com/2017/05/nba-logo.png" size="medium" />
           NBA All Star Ballot
         </Header>
-        <PlayersDashboard />
+        <Route path="/" component={PlayersDashboard} />
       </div>
     );
   }

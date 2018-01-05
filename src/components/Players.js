@@ -1,9 +1,11 @@
 import React from 'react';
+// import { Route } from 'react-router-dom';
 import PlayerCard from './PlayerCard';
 import PlayerFormModal from '../containers/PlayerFormModal';
 
 import { Card } from 'semantic-ui-react';
 
+// const Players = ({ players, teams, upVotePlayer, removePlayer, selectedPlayers, match }) => {
 const Players = ({ players, teams, upVotePlayer, removePlayer, selectedPlayers }) => {
 
   const sortedPlayers = players.sort((a, b) => (
@@ -21,9 +23,14 @@ const Players = ({ players, teams, upVotePlayer, removePlayer, selectedPlayers }
 
   return (
     <Card.Group itemsPerRow={3} doubling stackable>
+      {/* <Route path={`${match.url}/new`} render={() => (
+        <Card>
+          <PlayerFormModal teams={teams} />
+        </Card>  
+      )} /> */}
       <Card>
         <PlayerFormModal teams={teams} />
-      </Card>  
+      </Card>
       {sortedPlayers.map(player =>
         <PlayerCard
           player={player}
