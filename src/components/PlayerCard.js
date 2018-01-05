@@ -41,7 +41,8 @@ const PlayerCard = ({ player, teams, upVotePlayer, removePlayer, selectedPlayers
           player={player}
           teams={teams}
           upVotePlayer={upVotePlayer}
-          removePlayer={removePlayer} />
+          removePlayer={removePlayer}
+        />
       </Card.Content>
     </Card>
   );

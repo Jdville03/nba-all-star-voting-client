@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { addPlayer, updatePlayer } from "../actions/playerActions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addPlayer, updatePlayer } from '../actions/playerActions';
 
-import { Button, Form, Header, Icon, Message, Modal } from "semantic-ui-react";
+import { Button, Form, Header, Icon, Message, Modal } from 'semantic-ui-react';
 
 class PlayerFormModal extends Component {
   constructor(props) {
