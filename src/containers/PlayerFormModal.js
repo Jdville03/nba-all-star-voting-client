@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addPlayer, updatePlayer } from '../actions/playerActions';
-
 import { Button, Form, Header, Icon, Message, Modal } from 'semantic-ui-react';
 
 class PlayerFormModal extends Component {
@@ -19,7 +18,7 @@ class PlayerFormModal extends Component {
         player: {
           last_name: "",
           first_name: "",
-          team_id: "",
+          team_id: parseInt(this.props.match.params.teamId, 10) || "",
           position: "",
           image_url: ""
         },
@@ -87,7 +86,7 @@ class PlayerFormModal extends Component {
         player: {
           last_name: "",
           first_name: "",
-          team_id: "",
+          team_id: parseInt(this.props.match.params.teamId, 10) || "",
           position: "",
           image_url: ""
         }
