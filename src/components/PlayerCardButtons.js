@@ -1,6 +1,6 @@
 import React from 'react';
 import PlayerFormModal from '../containers/PlayerFormModal';
-import DeleteConfirmModal from './DeleteConfirmModal';
+import DeleteConfirmModal from '../containers/DeleteConfirmModal';
 
 import { Button, Card, Label } from 'semantic-ui-react';
 
