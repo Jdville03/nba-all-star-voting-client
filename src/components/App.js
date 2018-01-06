@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import PlayersDashboard from '../containers/PlayersDashboard';
+import './App.css';
 import { Header, Image } from 'semantic-ui-react';
 
 class App extends Component {

@@ -6,7 +6,7 @@ import { fetchTeams } from '../actions/teamActions';
 import Players from '../components/Players';
 import Teams from '../components/Teams';
 import SelectedPlayersListModal from '../components/SelectedPlayersListModal';
-import './Players.css';
+// import './Players.css';
 import { Container, Divider } from 'semantic-ui-react';
 
 class PlayersDashboard extends Component {
