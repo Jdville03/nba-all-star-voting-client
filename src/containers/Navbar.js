@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
 
-export default class MenuExampleEvenlyDivided extends Component {
+class Navbar extends Component {
   state = {}
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -27,7 +27,7 @@ export default class MenuExampleEvenlyDivided extends Component {
         />
         <Menu.Item
           name="playersByTeam"
-          active={activeItem === "playersByTeam" || location.pathname === "/teams"}
+          active={activeItem === "playersByTeam" || location.pathname.includes("/teams")}
           onClick={this.handleItemClick}
           as={Link} to="/teams"
         />
@@ -35,3 +35,5 @@ export default class MenuExampleEvenlyDivided extends Component {
     )
   }
 }
+
+export default Navbar;
