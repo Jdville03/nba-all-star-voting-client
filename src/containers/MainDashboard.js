@@ -6,6 +6,7 @@ import { fetchTeams } from '../actions/teamActions';
 import Players from '../components/Players';
 import Teams from '../components/Teams';
 import SelectedPlayersListModal from '../components/SelectedPlayersListModal';
+import Navbar from './Navbar';
 import { Container, Divider } from 'semantic-ui-react';
 
 class MainDashboard extends Component {
@@ -57,6 +58,7 @@ class MainDashboard extends Component {
     return (
       <Container>
         <SelectedPlayersListModal selectedPlayers={this.selectedPlayers()} />
+        <Route path={this.props.match.url} component={Navbar} />
         <Divider />
         <Route path={"/players"} render={(props) => (
           <Players
