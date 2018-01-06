@@ -1,6 +1,5 @@
 import React from 'react';
 import PlayerCardButtons from './PlayerCardButtons';
-
 import { Card, Image, Label } from 'semantic-ui-react';
 
 const PlayerCard = ({ player, teams, upVotePlayer, removePlayer, selectedPlayersIds }) => {
