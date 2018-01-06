@@ -1,16 +1,16 @@
 import React from 'react';
-// import { Route } from 'react-router-dom';
 import PlayerCard from './PlayerCard';
 import PlayerFormModal from '../containers/PlayerFormModal';
-
 import { Card } from 'semantic-ui-react';
 
-// const Players = ({ players, teams, upVotePlayer, removePlayer, selectedPlayers, match }) => {
-const Players = ({ players, teams, upVotePlayer, removePlayer, selectedPlayers }) => {
+const Players = ({ players, teams, upVotePlayer, removePlayer, selectedPlayers, match }) => {
 
-  const sortedPlayers = players.sort((a, b) => (
-    a.last_name.localeCompare(b.last_name) || a.first_name.localeCompare(b.first_name) || a.id - b.id
-  ));
+  const sortedAndFilteredPlayers = () => {
+    const filteredPlayers = match.params.teamId ? players.filter(player => player.team_id === parseInt(match.params.teamId, 10)) : players;
+    return filteredPlayers.sort((a, b) => (
+      a.last_name.localeCompare(b.last_name) || a.first_name.localeCompare(b.first_name) || a.id - b.id
+    ));
+  }
 
   const selectedPlayersIds = () => {
     let selectedPlayersIds = [];
@@ -23,15 +23,10 @@ const Players = ({ players, teams, upVotePlayer, removePlayer, selectedPlayers }
 
   return (
     <Card.Group itemsPerRow={3} doubling stackable>
-      {/* <Route path={`${match.url}/new`} render={() => (
-        <Card>
-          <PlayerFormModal teams={teams} />
-        </Card>  
-      )} /> */}
       <Card>
-        <PlayerFormModal teams={teams} />
+        <PlayerFormModal teams={teams} match={match} />
       </Card>
-      {sortedPlayers.map(player =>
+      {sortedAndFilteredPlayers().map(player =>
         <PlayerCard
           player={player}
           teams={teams}
