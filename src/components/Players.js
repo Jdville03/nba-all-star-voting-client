@@ -1,7 +1,7 @@
 import React from 'react';
 import PlayerCard from './PlayerCard';
 import PlayerFormModal from '../containers/PlayerFormModal';
-import { Card } from 'semantic-ui-react';
+import { Card, Header, Image } from 'semantic-ui-react';
 
 const Players = ({ players, teams, upVotePlayer, removePlayer, selectedPlayers, match }) => {
 
@@ -21,22 +21,39 @@ const Players = ({ players, teams, upVotePlayer, removePlayer, selectedPlayers, 
       .concat(selectedPlayers.westGuards.map(player => player.id));
   }
 
+  const headerText = () => {
+    if (match.params.teamId) {
+      const team = teams.find(team => team.id === parseInt(match.params.teamId, 10));
+      if (team) {
+        return (
+          <Header as="h3" textAlign="center">
+            <Image src={team.image_url} />
+            {team.city} {team.name}
+          </Header>
+        );
+      }  
+    }
+  }
+
   return (
-    <Card.Group itemsPerRow={3} doubling stackable>
-      <Card>
-        <PlayerFormModal teams={teams} match={match} />
-      </Card>
-      {sortedAndFilteredPlayers().map(player =>
-        <PlayerCard
-          player={player}
-          teams={teams}
-          key={player.id}
-          upVotePlayer={upVotePlayer}
-          removePlayer={removePlayer}
-          selectedPlayersIds={selectedPlayersIds()}
-        />
-      )}
-    </Card.Group>
+    <div>
+      {headerText()}
+      <Card.Group itemsPerRow={3} doubling stackable>
+        <Card>
+          <PlayerFormModal teams={teams} match={match} />
+        </Card>
+        {sortedAndFilteredPlayers().map(player =>
+          <PlayerCard
+            player={player}
+            teams={teams}
+            key={player.id}
+            upVotePlayer={upVotePlayer}
+            removePlayer={removePlayer}
+            selectedPlayersIds={selectedPlayersIds()}
+          />
+        )}
+      </Card.Group>
+    </div>
   );
 };
 
