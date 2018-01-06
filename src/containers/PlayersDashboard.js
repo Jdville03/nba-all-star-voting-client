@@ -4,11 +4,9 @@ import { Route } from 'react-router-dom';
 import { fetchPlayers, upVotePlayer, removePlayer } from '../actions/playerActions';
 import { fetchTeams } from '../actions/teamActions';
 import Players from '../components/Players';
-// import PlayerFormModal from './PlayerFormModal';
 import Teams from '../components/Teams';
 import SelectedPlayersListModal from '../components/SelectedPlayersListModal';
 import './Players.css';
-
 import { Container, Divider } from 'semantic-ui-react';
 
 class PlayersDashboard extends Component {
@@ -71,10 +69,7 @@ class PlayersDashboard extends Component {
             {...props}
           />
         )} />
-        {/* <Route path={"/players/new"} render={() => (
-          <PlayerFormModal teams={this.props.teams} />
-        )} /> */}
-        <Route exact path={"/teams"} render={(props) => (
+        <Route path={"/teams"} render={(props) => (
           <Teams
             players={this.props.players}
             teams={this.props.teams}
