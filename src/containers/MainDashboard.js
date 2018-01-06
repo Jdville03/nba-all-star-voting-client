@@ -6,10 +6,9 @@ import { fetchTeams } from '../actions/teamActions';
 import Players from '../components/Players';
 import Teams from '../components/Teams';
 import SelectedPlayersListModal from '../components/SelectedPlayersListModal';
-// import './Players.css';
 import { Container, Divider } from 'semantic-ui-react';
 
-class PlayersDashboard extends Component {
+class MainDashboard extends Component {
   
   componentDidMount() {
     this.props.fetchPlayers();
@@ -91,4 +90,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { fetchPlayers, fetchTeams, upVotePlayer, removePlayer })(PlayersDashboard);
+export default connect(mapStateToProps, { fetchPlayers, fetchTeams, upVotePlayer, removePlayer })(MainDashboard);
