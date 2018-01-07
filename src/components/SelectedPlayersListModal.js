@@ -64,11 +64,11 @@ const SelectedPlayersListModal = ({ selectedPlayers }) => {
 
   const modalTriggerButton = () => (
     <Button fluid color="black">
-      <h3>  
-        View Current Selected Starters
+      <h4>  
+        CURRENT SELECTED STARTERS
         <br />
         <small>(most voted 3 frontcourt players and 2 guards from each conference)</small>
-      </h3>
+      </h4>
       {modalTriggerButtonIcons()}
     </Button>
   );
