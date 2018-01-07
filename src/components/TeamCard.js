@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { Card, Image } from 'semantic-ui-react';
 import Pluralize from 'pluralize';
 
-const TeamCard = ({ team }) => {
+const TeamCard = ({ team, players }) => {
   
   const cardColor = team.conference === "Western" ? "red" : "blue";
-  const playersOnBallot = Pluralize("player", team.players.length, true);
+
+  const playersOnBallot = Pluralize("player", players.filter(player => player.team_id === team.id).length, true);
 
   return (
     <Card color={cardColor} as={Link} to={`/teams/${team.id}`}>
