@@ -182,6 +182,7 @@ class PlayerFormModal extends Component {
               label="Position"
               placeholder="Select Position"
               name="position"
+              search
               selection
               value={position}
               onChange={this.handleOnSelectChange}
