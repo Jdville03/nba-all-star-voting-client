@@ -14,21 +14,18 @@ class Navbar extends Component {
 
     return (
       <Menu fluid widths={3}>
+        <Menu.Item header>View/Add Players:</Menu.Item>
         <Menu.Item
-          name="home"
-          active={activeItem === "home" || location.pathname === "/"}
-          onClick={this.handleItemClick}
-          as={Link} to="/"
-        />  
-        <Menu.Item
-          name="allPlayers"
-          active={activeItem === "allPlayers" || location.pathname === "/players"}
+          name="all"
+          active={activeItem === "all" || location.pathname === "/players"}
+          content="ALL"
           onClick={this.handleItemClick}
           as={Link} to="/players"
         />
         <Menu.Item
-          name="playersByTeam"
-          active={activeItem === "playersByTeam" || location.pathname.includes("/teams")}
+          name="byTeam"
+          active={activeItem === "byTeam" || location.pathname.includes("/teams")}
+          content="BY TEAM"
           onClick={this.handleItemClick}
           as={Link} to="/teams"
         />
