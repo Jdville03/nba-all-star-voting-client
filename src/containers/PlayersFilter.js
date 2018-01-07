@@ -50,15 +50,14 @@ class PlayersFilter extends Component {
         if (team) {
           return (
             <Segment textAlign="center">
-              <Header as="h3">
-                <Image src={team.image_url} />
-                {team.city} {team.name}
+              <Header as="h4">
+                <Image src={team.image_url} /> <span>{team.city} {team.name}</span>
               </Header>
             </Segment>
           );
-        }  
+        }
       }
-    }
+    };
     
     return (
       <div>

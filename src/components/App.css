@@ -58,3 +58,7 @@
   margin-right: .5em;
   margin-bottom: 0;
 }
+
+.ui.horizontal.segments>.segment {
+  border-left: none;
+}
