@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import Players from '../components/Players';
+import PlayersFilter from './PlayersFilter';
 import Teams from '../components/Teams';
-import { Dropdown, Form } from 'semantic-ui-react';
+import { Dropdown, Form, Segment } from 'semantic-ui-react';
 
 class TeamsFilter extends Component {
   
@@ -14,7 +14,7 @@ class TeamsFilter extends Component {
     const { value } = this.state;
     const { match, players, teams, upVotePlayer, removePlayer, selectedPlayers } = this.props;
 
-    const renderConferenceOptions = [
+    const renderConferencesOptions = [
       { key: 1, text: "All Conferences", value: "All" },
       { key: 2, text: "Eastern Conference", value: "Eastern" },
       { key: 3, text: "Western Conference", value: "Western" }
@@ -37,21 +37,21 @@ class TeamsFilter extends Component {
       <div>
         <Route exact path={match.url} render={() => (
           <div>
-            <p>
-            <Form>
-              <Form.Field inline>
-                <label>FILTER TEAMS:</label>  
-                <Dropdown
-                  onChange={this.handleChange}
-                  options={renderConferenceOptions}
-                  placeholder="Select Conference"
-                  selection
-                  search
-                  value={value}
-                />
-              </Form.Field>
-            </Form>
-            </p>
+            <Segment>
+              <Form>
+                <Form.Field inline>
+                  <label>FILTER TEAMS:</label>  
+                  <Dropdown
+                    onChange={this.handleChange}
+                    options={renderConferencesOptions}
+                    placeholder="Select Conference"
+                    selection
+                    search
+                    value={value}
+                  />
+                </Form.Field>
+              </Form>
+            </Segment>
             <Teams
               players={players}
               filteredTeams={filteredTeams()}
@@ -59,7 +59,7 @@ class TeamsFilter extends Component {
           </div>
         )} />
         <Route path={`${match.url}/:teamId`} render={(props) => (
-          <Players
+          <PlayersFilter
             players={players}
             teams={teams}
             upVotePlayer={upVotePlayer}

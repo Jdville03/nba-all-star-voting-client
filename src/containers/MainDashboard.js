@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { fetchPlayers, upVotePlayer, removePlayer } from '../actions/playerActions';
 import { fetchTeams } from '../actions/teamActions';
-import Players from '../components/Players';
+import PlayersFilter from './PlayersFilter';
 import TeamsFilter from './TeamsFilter';
 import SelectedPlayersListModal from '../components/SelectedPlayersListModal';
 import Navbar from './Navbar';
@@ -60,7 +60,7 @@ class MainDashboard extends Component {
         <SelectedPlayersListModal selectedPlayers={this.selectedPlayers()} />
         <Route path={this.props.match.url} component={Navbar} />
         <Route path={"/players"} render={(props) => (
-          <Players
+          <PlayersFilter
             players={this.props.players}
             teams={this.props.teams}
             upVotePlayer={this.handleUpVotePlayer}
