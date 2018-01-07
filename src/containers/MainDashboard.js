@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import { fetchPlayers, upVotePlayer, removePlayer } from '../actions/playerActions';
 import { fetchTeams } from '../actions/teamActions';
 import Players from '../components/Players';
-import Teams from '../components/Teams';
+import TeamsFilter from './TeamsFilter';
 import SelectedPlayersListModal from '../components/SelectedPlayersListModal';
 import Navbar from './Navbar';
 import { Container } from 'semantic-ui-react';
@@ -70,7 +70,7 @@ class MainDashboard extends Component {
           />
         )} />
         <Route path={"/teams"} render={(props) => (
-          <Teams
+          <TeamsFilter
             players={this.props.players}
             teams={this.props.teams}
             upVotePlayer={this.handleUpVotePlayer}
