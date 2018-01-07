@@ -1,8 +1,8 @@
 import React from 'react';
-
 import { Icon, Image, Label, List } from 'semantic-ui-react';
 
 const SelectedPlayerListItem = ({ player }) => {
+  
   const labelColor = player.team.conference === "Western" ? "red" : "blue";
 
   const addDefaultSrc = (event) => {

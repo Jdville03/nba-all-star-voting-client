@@ -4,6 +4,7 @@ import { addPlayer, updatePlayer } from '../actions/playerActions';
 import { Button, Form, Header, Icon, Message, Modal } from 'semantic-ui-react';
 
 class PlayerFormModal extends Component {
+  
   constructor(props) {
     super(props);
 

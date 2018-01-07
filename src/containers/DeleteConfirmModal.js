@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, Confirm, Icon } from 'semantic-ui-react';
 
 class DeleteConfirmModal extends Component {
+  
   state = { open: false };
 
   show = () => this.setState({ open: true });

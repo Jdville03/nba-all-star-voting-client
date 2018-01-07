@@ -1,6 +1,5 @@
 import React from 'react';
 import SelectedPlayerListItem from './SelectedPlayerListItem';
-
 import { Button, Grid, Header, Icon, Image, List, Modal, Segment } from "semantic-ui-react";
 
 const SelectedPlayersListModal = ({ selectedPlayers }) => {
