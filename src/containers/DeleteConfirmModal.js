@@ -14,7 +14,7 @@ class DeleteConfirmModal extends Component {
 
   render() {
     const { last_name, first_name } = this.props.player;
-    const contentText = `Do you really want to remove ${first_name} ${last_name}?`
+    const contentText = `Do you really want to remove ${first_name.toUpperCase()} ${last_name.toUpperCase()}?`
     return (
       <div>
         <Button icon basic compact floated="right" size="mini" onClick={this.show}>
