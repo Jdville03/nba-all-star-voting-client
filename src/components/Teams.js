@@ -2,7 +2,6 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import TeamCard from './TeamCard';
 import Players from './Players';
-
 import { Card } from 'semantic-ui-react';
 
 const Teams = ({ players, teams, upVotePlayer, removePlayer, selectedPlayers, match }) => {
@@ -19,6 +18,7 @@ const Teams = ({ players, teams, upVotePlayer, removePlayer, selectedPlayers, ma
             <TeamCard
               team={team}
               key={team.id}
+              players={players}
             />
           )}
         </Card.Group>
