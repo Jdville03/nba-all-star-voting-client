@@ -12,7 +12,9 @@ class PlayerFormModal extends Component {
       this.state = {
         player: props.player,
         modalOpen: false,
-        formError: false
+        formError: false,
+        formWarning: false,
+        duplicatePlayer: {}
       };
     } else {
       this.state = {
@@ -24,8 +26,31 @@ class PlayerFormModal extends Component {
           image_url: ""
         },
         modalOpen: false,
-        formError: false
+        formError: false,
+        formWarning: false,
+        duplicatePlayer: {}
       };
+    }
+  }
+
+  validatePlayer = () => {
+    let playerOnBallot;
+    if (this.props.player) {
+      playerOnBallot = this.props.players.find(player => player.last_name.toUpperCase() === this.state.player.last_name.toUpperCase() && player.first_name.toUpperCase() === this.state.player.first_name.toUpperCase() && player.id !== this.props.player.id);
+    } else {
+      playerOnBallot = this.props.players.find(player => player.last_name.toUpperCase() === this.state.player.last_name.toUpperCase() && player.first_name.toUpperCase() === this.state.player.first_name.toUpperCase());
+    }
+
+    if (playerOnBallot) {
+      this.setState({
+        formWarning: true,
+        duplicatePlayer: playerOnBallot
+      });
+    } else {
+      this.setState({
+        formWarning: false,
+        duplicatePlayer: {}
+      });
     }
   }
 
@@ -51,7 +76,9 @@ class PlayerFormModal extends Component {
       if (this.props.player) {
         this.props.updatePlayer(this.state.player);
         this.setState({
-          modalOpen: false
+          modalOpen: false,
+          formWarning: false,
+          duplicatePlayer: {}
         });
       } else {
         this.props.addPlayer(this.state.player);
@@ -78,12 +105,16 @@ class PlayerFormModal extends Component {
       this.setState({
         modalOpen: false,
         formError: false,
+        formWarning: false,
+        duplicatePlayer: {},
         player: this.props.player
       });
     } else {
       this.setState({
         modalOpen: false,
         formError: false,
+        formWarning: false,
+        duplicatePlayer: {},
         player: {
           last_name: "",
           first_name: "",
@@ -139,6 +170,13 @@ class PlayerFormModal extends Component {
 
     const submitText = this.props.player ? "Update Player" : "Add Player";
 
+    const warningMessageContent = () => {
+      if (this.state.formWarning) {
+        const { last_name, first_name, team } = this.state.duplicatePlayer;
+        return `${first_name.toUpperCase()} ${last_name.toUpperCase()} (${team.city} ${team.name}) is already on the ballot.`
+      }
+    }
+
     return (
       <Modal
         size="tiny"
@@ -149,13 +187,14 @@ class PlayerFormModal extends Component {
       >
         <Header content={headerText} />
         <Modal.Content>
-          <Form error={this.state.formError} size="small" onSubmit={this.handleOnSubmit}>
+          <Form error={this.state.formError} warning={this.state.formWarning} size="small" onSubmit={this.handleOnSubmit}>
             <Form.Input
               label="Last name"  
               placeholder="Last name"
               name="last_name"
               value={last_name}
               onChange={this.handleOnChange}
+              onBlur={this.validatePlayer}
               required
             />
             <Form.Input
@@ -164,6 +203,7 @@ class PlayerFormModal extends Component {
               name="first_name"
               value={first_name}
               onChange={this.handleOnChange}
+              onBlur={this.validatePlayer}
               required
             />
             <Form.Dropdown
@@ -199,6 +239,11 @@ class PlayerFormModal extends Component {
               error
               header="Submission Error"
               content="You are missing a required field."
+            />
+            <Message
+              warning
+              header="Submission Warning"
+              content={warningMessageContent()}
             />
             <Form.Button>{submitText}</Form.Button>
           </Form>
