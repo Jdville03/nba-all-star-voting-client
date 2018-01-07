@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Players from '../components/Players';
 import Teams from '../components/Teams';
-import { Dropdown } from 'semantic-ui-react';
+import { Dropdown, Form } from 'semantic-ui-react';
 
 class TeamsFilter extends Component {
   
@@ -37,15 +37,21 @@ class TeamsFilter extends Component {
       <div>
         <Route exact path={match.url} render={() => (
           <div>
-            Filter Teams:
-            <Dropdown
-              onChange={this.handleChange}
-              options={renderConferenceOptions}
-              placeholder="Select Conference"
-              selection
-              search
-              value={value}
-            />
+            <p>
+            <Form>
+              <Form.Field inline>
+                <label>FILTER TEAMS:</label>  
+                <Dropdown
+                  onChange={this.handleChange}
+                  options={renderConferenceOptions}
+                  placeholder="Select Conference"
+                  selection
+                  search
+                  value={value}
+                />
+              </Form.Field>
+            </Form>
+            </p>
             <Teams
               players={players}
               filteredTeams={filteredTeams()}
