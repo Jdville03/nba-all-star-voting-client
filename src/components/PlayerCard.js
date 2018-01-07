@@ -2,7 +2,7 @@ import React from 'react';
 import PlayerCardButtons from './PlayerCardButtons';
 import { Card, Image, Label } from 'semantic-ui-react';
 
-const PlayerCard = ({ player, teams, upVotePlayer, removePlayer, selectedPlayersIds }) => {
+const PlayerCard = ({ player, players, teams, upVotePlayer, removePlayer, selectedPlayersIds }) => {
   
   const cardColor = player.team.conference === "Western" ? "red" : "blue";
 
@@ -38,6 +38,7 @@ const PlayerCard = ({ player, teams, upVotePlayer, removePlayer, selectedPlayers
       <Card.Content extra>
         <PlayerCardButtons
           player={player}
+          players={players}
           teams={teams}
           upVotePlayer={upVotePlayer}
           removePlayer={removePlayer}

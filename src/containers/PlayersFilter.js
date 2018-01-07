@@ -81,7 +81,8 @@ class PlayersFilter extends Component {
           {headerText()}
         </Segment.Group>
         <Players 
-          teams={teams}              
+          teams={teams}
+          players={players}
           upVotePlayer={upVotePlayer}
           removePlayer={removePlayer}
           filteredPlayers={filteredPlayers()}

@@ -3,7 +3,7 @@ import PlayerFormModal from '../containers/PlayerFormModal';
 import DeleteConfirmModal from '../containers/DeleteConfirmModal';
 import { Button, Card, Label } from 'semantic-ui-react';
 
-const PlayerCardButtons = ({ player, teams, upVotePlayer, removePlayer }) => {
+const PlayerCardButtons = ({ player, players, teams, upVotePlayer, removePlayer }) => {
   
   const ButtonColor = player.team.conference === "Western" ? "red" : "blue";
 
@@ -18,7 +18,7 @@ const PlayerCardButtons = ({ player, teams, upVotePlayer, removePlayer }) => {
         </Label>
       </Button>
       <DeleteConfirmModal player={player} removePlayer={removePlayer} />
-      <PlayerFormModal player={player} teams={teams} />        
+      <PlayerFormModal player={player} players={players} teams={teams} />        
     </Card.Content>  
   );  
 };
