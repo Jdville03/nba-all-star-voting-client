@@ -11,7 +11,7 @@ class App extends Component {
       <div>
         <Header as="h1" textAlign="center" block>
           <Image src="https://espntheundefeated.files.wordpress.com/2017/05/nba-logo.png" size="medium" />
-          NBA ALL STAR VOTING
+          NBA ALL-STAR VOTING
         </Header>
         <Route path="/" component={MainDashboard} />
       </div>
