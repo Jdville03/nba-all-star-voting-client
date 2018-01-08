@@ -6,15 +6,19 @@ class DeleteConfirmModal extends Component {
   state = { open: false };
 
   show = () => this.setState({ open: true });
+
   handleConfirm = () => {
     this.props.removePlayer(this.props.player.id);
     this.setState({ open: false });
   };
+
   handleCancel = () => this.setState({ open: false });
 
   render() {
     const { last_name, first_name } = this.props.player;
+    
     const contentText = `Do you really want to remove ${first_name.toUpperCase()} ${last_name.toUpperCase()}?`
+
     return (
       <div>
         <Button icon basic compact floated="right" size="mini" onClick={this.show}>
