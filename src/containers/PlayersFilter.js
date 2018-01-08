@@ -3,13 +3,20 @@ import Players from '../components/Players';
 import { Dropdown, Form, Grid, Header, Image, Segment } from 'semantic-ui-react';
 
 class PlayersFilter extends Component {
-  
-  state = {};
+    
+  constructor(props) {
+    super(props);
 
-  handleChange = (e, { value }) => this.setState({ value });
+    this.state = {
+      position: "All",
+      conference: "All"
+    };
+  }
+
+  handleChange = (event, { value, name }) => this.setState({ [name]: value });
 
   render() {
-    const { value } = this.state;
+    const { position, conference } = this.state;
     const { match, players, teams, upVotePlayer, removePlayer, selectedPlayers } = this.props;
 
     const renderPositionsOptions = [
@@ -18,19 +25,18 @@ class PlayersFilter extends Component {
       { key: 3, text: "Guard", value: "Guard" }
     ];
 
+    const renderConferencesOptions = [
+      { key: 1, text: "All Conferences", value: "All" },
+      { key: 2, text: "Eastern Conference", value: "Eastern" },
+      { key: 3, text: "Western Conference", value: "Western" }
+    ];
+
     const initialFilteredPlayers = match.params.teamId ? players.filter(player => player.team_id === parseInt(match.params.teamId, 10)) : players; 
-    
+
     const filteredPlayers = () => {
-      switch (value) {
-        case "All":
-          return initialFilteredPlayers;
-        case "Frontcourt":
-          return initialFilteredPlayers.filter(player => player.position === "Frontcourt");
-        case "Guard":
-          return initialFilteredPlayers.filter(player => player.position === "Guard");
-        default:
-          return initialFilteredPlayers;  
-      }
+      const playersFilteredByPosition = position === "All" ? initialFilteredPlayers : initialFilteredPlayers.filter(player => player.position === position);
+
+      return conference === "All" ? playersFilteredByPosition : playersFilteredByPosition.filter(player => player.team.conference === conference);
     };
 
     const selectedPlayersIds = () => {
@@ -58,6 +64,23 @@ class PlayersFilter extends Component {
         }
       }
     };
+
+    const conferenceFilter = () => {
+      if (!match.params.teamId) {
+        return (
+          <Dropdown
+            onChange={this.handleChange}
+            options={renderConferencesOptions}
+            placeholder="Select Conference"
+            name="conference"
+            selection
+            search
+            value={conference}
+            disabled={disabledProp}
+          />
+        );
+      }
+    };
     
     return (
       <div>
@@ -71,11 +94,13 @@ class PlayersFilter extends Component {
                     onChange={this.handleChange}
                     options={renderPositionsOptions}
                     placeholder="Select Position"
+                    name="position"
                     selection
                     search
-                    value={value}
+                    value={position}
                     disabled={disabledProp}
-                  />
+                  />{" "}
+                  {conferenceFilter()}
                 </Form.Field>
               </Form>
             </Grid.Column>
