@@ -6,9 +6,9 @@ import { Dropdown, Form, Segment } from 'semantic-ui-react';
 
 class TeamsFilter extends Component {
   
-  state = {};
+  state = { value: "All" };
 
-  handleChange = (e, { value }) => this.setState({ value });
+  handleChange = (event, { value }) => this.setState({ value });
 
   render() {
     const { value } = this.state;
@@ -20,18 +20,9 @@ class TeamsFilter extends Component {
       { key: 3, text: "Western Conference", value: "Western" }
     ];
 
-    const filteredTeams = () => {
-      switch (value) {
-        case "All":
-          return teams;
-        case "Eastern":
-          return teams.filter(team => team.conference === "Eastern");
-        case "Western":
-          return teams.filter(team => team.conference === "Western");
-        default:
-          return teams;
-      }
-    };
+    const filteredTeams = () => (
+      value === "All" ? teams : teams.filter(team => team.conference === value)
+    );
     
     return (
       <div>
