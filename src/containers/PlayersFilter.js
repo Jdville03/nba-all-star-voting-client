@@ -49,9 +49,11 @@ class PlayersFilter extends Component {
         const team = teams.find(team => team.id === parseInt(match.params.teamId, 10));
         if (team) {
           return (
-            <Header as="h4">
-              <Image src={team.image_url} /> <span>{team.city} {team.name}</span>
-            </Header>
+            <Grid.Column width={6} textAlign="center">
+              <Header as="h4">
+                <Image src={team.image_url} /> <span>{team.city} {team.name}</span>
+              </Header>
+            </Grid.Column>  
           );
         }
       }
@@ -60,8 +62,8 @@ class PlayersFilter extends Component {
     return (
       <div>
         <Segment>
-          <Grid>
-            <Grid.Column width={10}>
+          <Grid columns="equal">
+            <Grid.Column>
               <Form>
                 <Form.Field inline>
                   <label>FILTER PLAYERS:</label>  
@@ -77,9 +79,7 @@ class PlayersFilter extends Component {
                 </Form.Field>
               </Form>
             </Grid.Column>
-            <Grid.Column width={6} textAlign="center">
-              {headerText()}
-            </Grid.Column>
+            {headerText()}
           </Grid>
         </Segment>
         <Players 
