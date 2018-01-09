@@ -21,7 +21,7 @@ class PlayerFormModal extends Component {
         player: {
           last_name: "",
           first_name: "",
-          team_id: parseInt(this.props.match.params.teamId, 10) || "",
+          team_id: parseInt(props.match.params.teamId, 10) || "",
           position: "",
           image_url: ""
         },
