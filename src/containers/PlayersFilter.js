@@ -3,14 +3,10 @@ import Players from '../components/Players';
 import { Dropdown, Form, Grid, Header, Image, Segment } from 'semantic-ui-react';
 
 class PlayersFilter extends Component {
-    
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      position: "All",
-      conference: "All"
-    };
+  state = {
+    position: "All",
+    conference: "All"
   }
 
   handleChange = (event, { value, name }) => this.setState({ [name]: value });
