@@ -1,8 +1,6 @@
-const API_URL = process.env.REACT_APP_API_URL;
-
 export function fetchPlayers() {
   return dispatch => {
-    return fetch(`${API_URL}/players`)
+    return fetch('/api/players')
       .then(response => response.json())
       .then(players => dispatch({ type: "FETCH_PLAYERS", players }))
       .catch(error => console.log(error));
@@ -11,7 +9,7 @@ export function fetchPlayers() {
 
 export function addPlayer(player) {
   return dispatch => {
-    return fetch(`${API_URL}/players`, {
+    return fetch('/api/players', {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -26,7 +24,7 @@ export function addPlayer(player) {
 
 export function upVotePlayer(playerId, playerVotes) {
   return dispatch => {
-    return fetch(`${API_URL}/players/${playerId}`, {
+    return fetch(`/api/players/${playerId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
@@ -41,7 +39,7 @@ export function upVotePlayer(playerId, playerVotes) {
 
 export function updatePlayer(player) {
   return dispatch => {
-    return fetch(`${API_URL}/players/${player.id}`, {
+    return fetch(`/api/players/${player.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json"
@@ -56,7 +54,7 @@ export function updatePlayer(player) {
 
 export function removePlayer(playerId) {
   return dispatch => {
-    return fetch(`${API_URL}/players/${playerId}`, {
+    return fetch(`/api/players/${playerId}`, {
       method: "DELETE"
     })
       .then(response => response.json())

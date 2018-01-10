@@ -2,6 +2,7 @@
   "name": "sports-voting-client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "pluralize": "^7.0.0",
     "react": "^16.2.0",
