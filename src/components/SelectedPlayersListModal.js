@@ -78,6 +78,7 @@ const SelectedPlayersListModal = ({ selectedPlayers }) => {
       size="fullscreen"
       trigger={modalTriggerButton()}
       basic
+      closeIcon
     >
       <Modal.Content>
         <Grid columns={2} stackable>
