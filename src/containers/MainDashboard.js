@@ -14,6 +14,8 @@ class MainDashboard extends Component {
   componentDidMount() {
     this.props.fetchPlayers();
     this.props.fetchTeams();
+    // interval function to ensure the client app's state does not drift from the server's in a multi-instance scenario
+    setInterval(this.props.fetchPlayers, 5000);
   }
 
   selectedPlayers = () => {
