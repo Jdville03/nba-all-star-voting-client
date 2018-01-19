@@ -7,7 +7,7 @@ const SelectedPlayersListModal = ({ selectedPlayers }) => {
   const placeholderPlayer = {
     team: { conference: "Eastern" },
     position: "Frontcourt",
-    image_url: "https://vote.nba.com/static/media/Logo_NBA_grey.36d9a907.svg",
+    image_url: "http://i.cdn.turner.com/nba/nba/.element/img/2.0/sect/statscube/players/large/default_nba_headshot_v2.png",
     votes: 0
   };
 
