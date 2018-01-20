@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
-import { fetchPlayers, upVotePlayer, removePlayer } from '../actions/playerActions';
-import { fetchTeams } from '../actions/teamActions';
+import { fetchPlayers, upVotePlayer, removePlayer } from '../actions/playersActions';
+import { fetchTeams } from '../actions/teamsActions';
 import PlayersFilter from './PlayersFilter';
 import TeamsFilter from './TeamsFilter';
 import SelectedPlayersListModal from '../components/SelectedPlayersListModal';
