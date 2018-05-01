@@ -85,7 +85,7 @@ const SelectedPlayersListModal = ({ selectedPlayers }) => {
           <Grid.Column>
             <Segment raised>
               <Header as="h3" dividing textAlign="center">
-                <Image src="https://upload.wikimedia.org/wikipedia/en/e/ed/Eastern_Conference_%28NBA%29_logo.gif" />
+                <Image src="https://seeklogo.com/images/N/nba-eastern-conference-logo-0B7E499625-seeklogo.com.png" />
                 Eastern Conference
               </Header> 
               <Grid columns={2}>
@@ -115,7 +115,7 @@ const SelectedPlayersListModal = ({ selectedPlayers }) => {
           <Grid.Column>
             <Segment raised>
               <Header as="h3" dividing textAlign="center">
-                <Image src="https://upload.wikimedia.org/wikipedia/en/0/02/Western_Conference_%28NBA%29_logo.gif" />
+                <Image src="https://vignette.wikia.nocookie.net/nba/images/1/16/NBA_Western_Conference_Primary_Logo.gif/revision/latest?cb=20100522045311" />
                 Western Conference
               </Header>  
               <Grid columns={2}>
